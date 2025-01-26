@@ -5,6 +5,7 @@ import { useNavigate } from "react-router";
 import _ from "lodash";
 import { productMeta } from "../helpers/product";
 import { ProductMeta } from "../helpers/config";
+import { v4 as uuid } from "uuid";
 
 const LoginComponent = () => {
   const [userName, setUserName] = useState("");
@@ -27,6 +28,8 @@ const LoginComponent = () => {
   };
 
   const inputData = () => {
+    console.log(uuid());
+    
     _.map(productMeta, (object: ProductMeta) => {
       console.log(object.key);
     });
