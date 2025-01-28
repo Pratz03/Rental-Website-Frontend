@@ -1,4 +1,5 @@
-import { BooleanType, InputType } from "./constants";
+import { JSX } from "react";
+import { InputType } from "./constants";
 
 export interface ProductMeta {
     key: string;
@@ -7,4 +8,16 @@ export interface ProductMeta {
     options?: string[];
     inputType: InputType;
     dataType?: string;
+}
+
+export interface DashboardData {
+    [keyName: string]: {
+        text: string;
+        component: JSX.Element;
+        icon: JSX.Element;
+    };
+}
+
+export interface IconMap {
+    [iconName: string]: JSX.Element;
 }

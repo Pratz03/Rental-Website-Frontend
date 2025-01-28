@@ -1,6 +1,6 @@
 import { Grid2, TextField } from "@mui/material"; // Corrected Grid import
 import React from "react";
-import { productMeta } from "../helpers/product";
+import { productMeta } from "../helpers/metaData";
 
 function AddProductComponent() {
   return (
