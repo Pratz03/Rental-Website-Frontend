@@ -1,3 +1,4 @@
+import Settings from "../components/AdminPanelComponent/Settings";
 import { DashboardData, ProductMeta } from "./config";
 import { InputType } from "./constants";
 import { iconMap } from "./iconMap";
@@ -40,31 +41,31 @@ export const dashboardData: DashboardData = {
   dashboard: {
     text: "Dashboard",
     component: <div>Dashboard</div>,
-    icon: iconMap["mail"]
+    icon: iconMap["dashboard"]
   },
   add_product: {
     text: "Add Product",
     component: <div>Add Product</div>,
-    icon: iconMap["inbox"]
+    icon: iconMap["product"]
   },
   view_edit_products: {
     text: "View/Edit Products",
     component: <div>View/Edit Products</div>,
-    icon: iconMap["mail"]
+    icon: iconMap["edit"]
   },
   bookings: {
     text: "Bookings",
     component: <div>Bookings</div>,
-    icon: iconMap["inbox"]
+    icon: iconMap["bookings"]
   },
   users: {
     text: "Users",
     component: <div>Bookings</div>,
-    icon: iconMap["mail"]
+    icon: iconMap["users"]
   },
   manage_brand: {
     text: "Manage Brand",
-    component: <div>Manage Brand</div>,
-    icon: iconMap["inbox"]
+    component: < Settings/>,
+    icon: iconMap["settings"]
   },
 }
