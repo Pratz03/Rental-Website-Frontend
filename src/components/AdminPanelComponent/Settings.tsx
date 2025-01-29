@@ -6,18 +6,10 @@ import { useState } from "react";
 import theme from "../../theme";
 
 function Settings() {
-  const [primaryColor, setPrimaryColor] = useState<string>(
-    theme.palette.primary.main
-  );
-  const [secondaryColor, setSecondaryColor] = useState<string>(
-    theme.palette.secondary.main
-  );
-  const [textLight, setTextLight] = useState<string>(
-    theme.palette.text.primary
-  );
-  const [textDark, setTextDark] = useState<string>(
-    theme.palette.text.secondary
-  );
+  const [primaryColor, setPrimaryColor] = useState<string>(theme.palette.primary.main);
+  const [secondaryColor, setSecondaryColor] = useState<string>(theme.palette.secondary.main);
+  const [textLight, setTextLight] = useState<string>(theme.palette.text.primary);
+  const [textDark, setTextDark] = useState<string>(theme.palette.text.secondary);
 
   return (
     <div style={{ marginTop: "40px" }}>
@@ -73,7 +65,7 @@ function Settings() {
             <Grid size={6}>
               <ColorPickerComponent
                 selectedColor={secondaryColor || "#ffffff"}
-                handleChange={setPrimaryColor}
+                handleChange={setSecondaryColor}
               />
             </Grid>
           </Grid>
@@ -86,7 +78,7 @@ function Settings() {
             <Grid size={6}>
               <ColorPickerComponent
                 selectedColor={textDark || "#ffffff"}
-                handleChange={setPrimaryColor}
+                handleChange={setTextDark}
               />
             </Grid>
           </Grid>
@@ -99,7 +91,7 @@ function Settings() {
             <Grid size={6}>
               <ColorPickerComponent
                 selectedColor={textLight || "#ffffff"}
-                handleChange={setPrimaryColor}
+                handleChange={setTextLight}
               />
             </Grid>
           </Grid>
