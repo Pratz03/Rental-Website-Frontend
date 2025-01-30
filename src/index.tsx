@@ -7,6 +7,8 @@ import { ThemeProvider } from "@emotion/react";
 import theme from "./theme";
 import { CssBaseline } from "@mui/material";
 import { Provider } from "react-redux";
+import { store } from "./store/store";
+
 // import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(
@@ -15,13 +17,12 @@ const root = ReactDOM.createRoot(
 root.render(
   <BrowserRouter>
     <React.StrictMode>
-      {/* <Provider store={configureStore()}> */}
+      <Provider store={store}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-
           <App />
         </ThemeProvider>
-      {/* </Provider> */}
+      </Provider>
     </React.StrictMode>
   </BrowserRouter>
 );

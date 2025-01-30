@@ -1,4 +1,4 @@
-import Settings from "../components/AdminPanelComponent/Settings";
+import Settings from "../components/AdminPanelComponent/SettingsComponent";
 import { DashboardData, ProductMeta } from "./config";
 import { InputType } from "./constants";
 import { iconMap } from "./iconMap";

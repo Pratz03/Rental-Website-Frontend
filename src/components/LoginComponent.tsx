@@ -1,12 +1,19 @@
-import { Button, TextField } from "@mui/material";
+import { Button, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import _ from "lodash";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../store/store";
 
 const LoginComponent = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+
+  // const dispatch = useDispatch();
+  // const companySettings = useSelector(
+  //   (state: RootState) => state.companySettings
+  // );
 
   const navigate = useNavigate();
 
@@ -51,6 +58,8 @@ const LoginComponent = () => {
       <Button variant="contained" onClick={(e) => handleLogin()}>
         Sign in
       </Button>
+
+      {/* <Typography>{companySettings.company_name}</Typography> */}
     </div>
   );
 };
