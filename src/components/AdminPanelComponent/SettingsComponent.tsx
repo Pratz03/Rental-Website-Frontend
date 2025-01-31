@@ -52,7 +52,7 @@ function SettingsComponent() {
 
   return (
     <div style={{ marginTop: "40px" }}>
-      <Typography variant="h5" component="div">
+      <Typography variant="h6" component="div">
         Brand Settings
       </Typography>
       <Grid className="setting-container" container spacing={2} rowSpacing={6}>
@@ -218,6 +218,7 @@ function SettingsComponent() {
             variant="contained"
             component="label"
             color="secondary"
+            size="large"
             onClick={handleSubmit}
           >
             Submit

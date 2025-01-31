@@ -29,7 +29,7 @@ function AdminPanelComponent() {
   // const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
-  const [activeComponent, setActiveComponent] = useState("manage_brand");
+  const [activeComponent, setActiveComponent] = useState("create_product_form");
   const theme = useTheme();
 
   const handleDrawerClose = () => {
@@ -49,6 +49,7 @@ function AdminPanelComponent() {
 
   const handleDrawerItemClick = (componentName: string) => {
     setActiveComponent(componentName);
+    handleDrawerToggle();
   };
 
   const drawer = (
@@ -220,7 +221,7 @@ function AdminPanelComponent() {
         }}
       >
         <Toolbar />
-        <div style={{ margin: "30px 0" }}>
+        <div>
           {dashboardData[activeComponent].component}
           {/* <Button variant="contained" color="secondary">
             Contained

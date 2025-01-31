@@ -1,3 +1,4 @@
+import CreateProductForm from "../components/AdminPanelComponent/CreateProductForm";
 import Settings from "../components/AdminPanelComponent/SettingsComponent";
 import { DashboardData, ProductMeta } from "./config";
 import { InputType } from "./constants";
@@ -65,7 +66,12 @@ export const dashboardData: DashboardData = {
   },
   manage_brand: {
     text: "Manage Brand",
-    component: < Settings/>,
+    component: <Settings/>,
     icon: iconMap["settings"]
+  },
+  create_product_form: {
+    text: "Create Product Form",
+    component: <CreateProductForm/>,
+    icon: iconMap["form"]
   },
 }

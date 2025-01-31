@@ -29,13 +29,31 @@ const theme = createTheme({
     allVariants: {
         color: "#333333",
     },
-    h5: {
+    h6: {
         fontWeight: 600
     }
   },
   components: {
-    
-  }
+    MuiTextField: {
+      defaultProps: {
+        variant: "outlined", // Set default to outlined
+        color: "secondary", // Set default color
+      },
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          "&:hover .MuiOutlinedInput-notchedOutline": {
+            borderColor: secondary[500],
+          },
+          "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+            borderColor: secondary[500],
+            borderWidth: "2px",
+          },
+        },
+      },
+    },
+  },
 });
 
 export default responsiveFontSizes(theme);
