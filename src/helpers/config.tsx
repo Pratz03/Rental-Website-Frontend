@@ -2,7 +2,8 @@ import { JSX } from "react";
 import { InputType } from "./constants";
 
 export interface ProductMeta {
-    key: string;
+    id?: string;
+    key?: string;
     label: string;
     metric: string;
     options?: string[];
