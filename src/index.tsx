@@ -14,6 +14,7 @@ import { store } from "./store/store";
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+
 root.render(
   <BrowserRouter>
     <React.StrictMode>

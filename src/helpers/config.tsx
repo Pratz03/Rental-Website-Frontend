@@ -1,14 +1,15 @@
 import { JSX } from "react";
-import { InputType } from "./constants";
+import { BooleanType, DataType, InputType } from "./constants";
 
 export interface ProductMeta {
     id?: string;
     key?: string;
     label: string;
     metric: string;
-    options?: string[];
+    options?: string;
     inputType: InputType;
-    dataType?: string;
+    dataType?: DataType;
+    disabled?: boolean;
 }
 
 export interface DashboardData {

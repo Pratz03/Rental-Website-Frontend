@@ -1,40 +1,57 @@
 import CreateProductForm from "../components/AdminPanelComponent/CreateProductForm";
 import Settings from "../components/AdminPanelComponent/SettingsComponent";
 import { DashboardData, ProductMeta } from "./config";
-import { InputType } from "./constants";
+import { BooleanType, DataType, InputType } from "./constants";
 import { iconMap } from "./iconMap";
+import { v4 as uuid } from "uuid";
 
-export const productMeta: ProductMeta[] = [
+export const productMetadata: ProductMeta[] = [
   {
-    key: "milage",
-    label: "Milage",
-    metric: "km/l",
-    inputType: InputType.INPUT
-  },
-  {
-    key: "fuel_type",
-    label: "Fuel Type",
+    id: uuid(),
+    key: "product_name",
+    label: "Product Name",
     metric: "",
-    inputType: InputType.INPUT
+    inputType: InputType.INPUT,
+    dataType: DataType.STRING,
+    disabled: true
   },
   {
-    key: "distance_driven",
-    label: "Distance Driven",
-    metric: "km",
-    inputType: InputType.INPUT
-  },
-  {
-    key: "age",
-    label: "Age",
-    metric: "years",
-    inputType: InputType.INPUT
-  },
-  {
-    key: "type",
-    label: "Types",
+    id: uuid(),
+    key: "condition",
+    label: "Condition",
     metric: "",
-    options: ["Suv", "Sedan"],
-    inputType: InputType.SELECT
+    inputType: InputType.SELECT, // Dropdown for selecting condition
+    dataType: DataType.STRING,
+    options: '["New", "Used", "Refurbished"]',
+    disabled: true
+  },
+  {
+    id: uuid(),
+    key: "description",
+    label: "Description",
+    metric: "",
+    inputType: InputType.INPUT,
+    dataType: DataType.STRING,
+    disabled: true
+  },
+  {
+    id: uuid(),
+    key: "rent",
+    label: "Rent",
+    metric: "", // Currency symbol for rent
+    inputType: InputType.INPUT,
+    dataType: DataType.NUMBER,
+    disabled: true
+  },
+  {
+    id: uuid(),
+    key: "product_type",
+    label: "Product Type",
+    metric: "",
+    inputType: InputType.SELECT, // Dropdown for product types
+    dataType: DataType.STRING,
+    options: "",
+    disabled: false
   },
 ];
 
@@ -42,36 +59,36 @@ export const dashboardData: DashboardData = {
   dashboard: {
     text: "Dashboard",
     component: <div>Dashboard</div>,
-    icon: iconMap["dashboard"]
+    icon: iconMap["dashboard"],
   },
   add_product: {
     text: "Add Product",
     component: <div>Add Product</div>,
-    icon: iconMap["product"]
+    icon: iconMap["product"],
   },
   view_edit_products: {
     text: "View/Edit Products",
     component: <div>View/Edit Products</div>,
-    icon: iconMap["edit"]
+    icon: iconMap["edit"],
   },
   bookings: {
     text: "Bookings",
     component: <div>Bookings</div>,
-    icon: iconMap["bookings"]
+    icon: iconMap["bookings"],
   },
   users: {
     text: "Users",
     component: <div>Bookings</div>,
-    icon: iconMap["users"]
+    icon: iconMap["users"],
   },
   manage_brand: {
     text: "Manage Brand",
-    component: <Settings/>,
-    icon: iconMap["settings"]
+    component: <Settings />,
+    icon: iconMap["settings"],
   },
   create_product_form: {
     text: "Create Product Form",
-    component: <CreateProductForm/>,
-    icon: iconMap["form"]
+    component: <CreateProductForm />,
+    icon: iconMap["form"],
   },
-}
+};

@@ -7,3 +7,8 @@ export enum BooleanType {
     TRUE = "TRUE",
     FALSE = "FALSE"
 }
+
+export enum DataType {
+    STRING = "TEXT",
+    NUMBER = "INTEGER"
+}

@@ -96,7 +96,7 @@ function Home() {
                     }}
                   />
                 )}
-                {field.inputType === InputType.SELECT && (
+                {/* {field.inputType === InputType.SELECT && (
                   <FormControl>
                     <InputLabel id="">{field.label}</InputLabel>
                     <Select
@@ -112,7 +112,7 @@ function Home() {
                       ))}
                     </Select>
                   </FormControl>
-                )}
+                )} */}
               </Grid2>
             ))}
         </Grid2>
