@@ -1,0 +1,10 @@
+.note {
+    padding: 20px;
+    background-color: #ff000025;
+    border-radius: 8px;
+    margin-bottom: 30px !important;
+}
+
+.MuiFormControl-root .css-pu4sxn-MuiTypography-root {
+    font-size: 0.75rem;
+}

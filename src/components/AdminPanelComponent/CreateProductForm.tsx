@@ -21,6 +21,7 @@ import { v4 as uuid } from "uuid";
 import { productMetadata } from "../../helpers/metaData";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
+import "../../styles/createForm.css"
 
 function CreateProductForm() {
   const [inputType, setInputType] = useState("");
@@ -32,7 +33,7 @@ function CreateProductForm() {
 
   const AUTH_HEADER = {
     Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZGJOYW1lIjoiY2xpZW50XzliMWRlYjRkXzNiN2RfNGJhZF85YmRkXzJiMGQ3YjNkY2I2ZCIsImlhdCI6MTczODU3NTAzNiwiZXhwIjoxNzM4NTg1ODM2fQ.K2QMsK9cOb1Sw0_hy8_K7M1j4CPy9z5nfAs2pjvM43E",
+      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZGJOYW1lIjoiY2xpZW50XzliMWRlYjRkXzNiN2RfNGJhZF85YmRkXzJiMGQ3YjNkY2I2ZCIsImlhdCI6MTczODc0MDE1MiwiZXhwIjoxNzM4NzUwOTUyfQ.ZcyMmkHxcaFbjvi-_B4aLRrSw_MtPwIstQKXhN78Sq0",
   };
 
   const Item = styled(Paper)(({ theme }) => ({
@@ -148,21 +149,25 @@ function CreateProductForm() {
         prevFields.map((field) => ({ ...field, disabled: true }))
       );
       console.log("Form Submitted", productFields);
-      const updateFields = axios.put("http://localhost:5000/settings/update-settings", { product_fields: productFields }, {
-        headers: AUTH_HEADER
-      })
+      const updateFields = axios.put(
+        "http://localhost:5000/settings/update-settings",
+        { product_fields: productFields },
+        {
+          headers: AUTH_HEADER,
+        }
+      );
       console.log("Form Submitted", updateFields);
     }
   };
 
   const deleteField = (id: string) => {
-    setProductFields((prevFields) => prevFields.filter((field) => field.id !== id));
+    setProductFields((prevFields) =>
+      prevFields.filter((field) => field.id !== id)
+    );
   };
 
   return (
-    <div
-      style={{ display: "flex", flexDirection: "column" }}
-    >
+    <div style={{ display: "flex", flexDirection: "column" }}>
       <Typography
         variant="h6"
         component="div"
@@ -171,7 +176,7 @@ function CreateProductForm() {
           width: "100%",
           background: "#ffffff",
           padding: "20px 0",
-          zIndex: 10
+          zIndex: 10,
         }}
       >
         Create Product Form
@@ -214,20 +219,23 @@ function CreateProductForm() {
                     padding: "20px",
                   }}
                 >
+                  <Typography variant="body1" color={theme.palette.error.main} className="note">
+                    Note: Ensure all fields are correctly filled before submission, as they cannot be modified afterward.
+                  </Typography>
                   {productFields.map((field) => (
                     <Grid
                       key={field.id}
                       container
                       spacing={{ xs: 2, md: 3 }}
                       columns={{ xs: 4, sm: 8, md: 12 }}
-                      style={{ marginBottom: "10px" }}
+                      style={{ marginBottom: "30px" }}
                     >
                       <Grid item xs={3} sm={3} md={7}>
                         <div
                           style={{
                             display: "flex",
                             flexDirection: "row",
-                            alignItems: "flex-end",
+                            alignItems: "center",
                           }}
                         >
                           <TextField
@@ -246,7 +254,11 @@ function CreateProductForm() {
                             }
                             error={!!errors[field.id as string]?.key}
                             helperText={errors[field.id as string]?.key}
-                            disabled={!(field.key === "product_type") ? field.disabled : true}
+                            disabled={
+                              !(field.key === "product_type")
+                                ? field.disabled
+                                : true
+                            }
                           />
                           <TextField
                             label="Metric (Optional)"
@@ -261,7 +273,11 @@ function CreateProductForm() {
                                 e.target.value
                               )
                             }
-                            disabled={!(field.key === "product_type") ? field.disabled : true}
+                            disabled={
+                              !(field.key === "product_type")
+                                ? field.disabled
+                                : true
+                            }
                           />
                         </div>
                       </Grid>

@@ -21,7 +21,7 @@ import React, { useState } from "react";
 import { dashboardData } from "../../helpers/metaData";
 import logo from "../../assets/logo.png";
 import avtar from "../../assets/avtar.png";
-import "../../styles/adminPanel.css"
+import "../../styles/adminPanel.css";
 
 const drawerWidth = 300;
 
@@ -58,7 +58,7 @@ function AdminPanelComponent() {
         height: "100%", // Ensure full height of drawer
         display: "flex",
         flexDirection: "column",
-        padding: "0 20px"
+        padding: "0 20px",
       }}
     >
       {/* Fixed Logo Section */}
@@ -75,9 +75,12 @@ function AdminPanelComponent() {
       >
         <img src={logo} alt="Logo" style={{ width: "100px", height: "auto" }} />
       </Box>
-  
+
       {/* List Section */}
-      <Box className = "drawer-box" sx={{ flexGrow: 1, overflowY: "auto", paddingTop: "100px" }}>
+      <Box
+        className="drawer-box"
+        sx={{ flexGrow: 1, overflowY: "auto", paddingTop: "100px" }}
+      >
         <List>
           {Object.keys(dashboardData).map((key: string) => (
             <ListItem key={key} disablePadding>
@@ -90,14 +93,16 @@ function AdminPanelComponent() {
                       ? theme.palette.primary.main
                       : theme.palette.background.paper,
                   "& .MuiListItemIcon-root": {
-                    color: key === activeComponent
-                      ? theme.palette.text.secondary
-                      : theme.palette.text.primary,
+                    color:
+                      key === activeComponent
+                        ? theme.palette.text.secondary
+                        : theme.palette.text.primary,
                   },
                   "& .MuiTypography-root": {
-                    color: key === activeComponent
-                      ? theme.palette.text.secondary
-                      : theme.palette.text.primary,
+                    color:
+                      key === activeComponent
+                        ? theme.palette.text.secondary
+                        : theme.palette.text.primary,
                   },
                   "&:hover": {
                     backgroundColor: theme.palette.primary.main,
@@ -122,7 +127,6 @@ function AdminPanelComponent() {
       </Box>
     </Box>
   );
-  
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -218,14 +222,13 @@ function AdminPanelComponent() {
           flexGrow: 1,
           p: 3,
           width: { sm: `calc(100% - ${drawerWidth}px)` },
+          height: "100vh",
+          overflowY: "auto",
         }}
       >
         <Toolbar />
         <div>
           {dashboardData[activeComponent].component}
-          {/* <Button variant="contained" color="secondary">
-            Contained
-          </Button> */}
         </div>
       </Box>
     </Box>
