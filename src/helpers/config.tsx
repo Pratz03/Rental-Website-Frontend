@@ -2,24 +2,36 @@ import { JSX } from "react";
 import { BooleanType, DataType, InputType } from "./constants";
 
 export interface ProductMeta {
-    id?: string;
-    key?: string;
-    label: string;
-    metric: string;
-    options?: string;
-    inputType: InputType;
-    dataType?: DataType;
-    disabled?: boolean;
+  id?: string;
+  key?: string;
+  label: string;
+  metric: string;
+  options?: string;
+  inputType: InputType;
+  dataType?: DataType;
+  disabled?: boolean;
+}
+
+export interface UserData {
+  full_name: string;
+  username: string;
+  email: string;
+  phone: string;
+  city: string;
+  address: string;
+  password: string;
+  profile_photo?: string;
+  role: string;
 }
 
 export interface DashboardData {
-    [keyName: string]: {
-        text: string;
-        component: JSX.Element;
-        icon: JSX.Element;
-    };
+  [keyName: string]: {
+    text: string;
+    component: JSX.Element;
+    icon: JSX.Element;
+  };
 }
 
 export interface IconMap {
-    [iconName: string]: JSX.Element;
+  [iconName: string]: JSX.Element;
 }

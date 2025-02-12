@@ -22,6 +22,7 @@ import { productMetadata } from "../../helpers/metaData";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
 import "../../styles/createForm.css"
+import prodcutAPI from "../../api/productAPI";
 
 function CreateProductForm() {
   const [inputType, setInputType] = useState("");
@@ -149,13 +150,7 @@ function CreateProductForm() {
         prevFields.map((field) => ({ ...field, disabled: true }))
       );
       console.log("Form Submitted", productFields);
-      const updateFields = axios.put(
-        "http://localhost:5000/settings/update-settings",
-        { product_fields: productFields },
-        {
-          headers: AUTH_HEADER,
-        }
-      );
+      const updateFields = prodcutAPI.updateProductFields(productFields);
       console.log("Form Submitted", updateFields);
     }
   };

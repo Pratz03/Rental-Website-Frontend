@@ -1,0 +1,21 @@
+import { SettingsState } from "../store/slices/companySettingsSlice";
+import axiosInstance from "./axiosInstance"
+
+const settingsAPI = {
+    getSetting: async () => {
+        return await axiosInstance.get("/settings")
+    },
+    updateSettings: async (settingsData: SettingsState) => {
+        try {
+            const response = await axiosInstance.put("/settings/update-settings", settingsData);
+            console.log("Update successful:", response.data);
+            return response;
+        } catch (error: any) {
+            console.error("Error updating settings:", error.response?.data || error.message);
+            throw error;
+        }
+    }
+    
+}
+
+export default settingsAPI;

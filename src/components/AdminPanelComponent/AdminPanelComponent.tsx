@@ -29,7 +29,7 @@ function AdminPanelComponent() {
   // const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
-  const [activeComponent, setActiveComponent] = useState("create_product_form");
+  const [activeComponent, setActiveComponent] = useState("add_product");
   const theme = useTheme();
 
   const handleDrawerClose = () => {

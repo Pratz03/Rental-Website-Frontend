@@ -7,3 +7,8 @@
 .signup-main , .decor-main {
     flex: 1;
 } */
+
+.file-upload {
+    flex-direction: row !important;
+    align-items: center;
+}

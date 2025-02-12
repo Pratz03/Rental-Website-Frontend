@@ -14,9 +14,9 @@ function App() {
   return (
     <div className="App" style={{ display: "block" }}>
       <Routes>
-        <Route path={CLIENT_URL} element={<SignUpLogInComponent />} />
-        <Route path="home" element={<Home />} />
-        <Route path="admin" element={<AdminPanelComponent />} />
+        <Route path={"/:tenantId"} element={<SignUpLogInComponent />} />
+        <Route path="/:tenantId/home" element={<Home />} />
+        <Route path="/:tenantId/admin" element={<AdminPanelComponent />} />
       </Routes>
     </div>
   );

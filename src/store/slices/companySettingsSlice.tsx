@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 import { omit } from "lodash";
 import axios from "axios";
+import settingsAPI from "../../api/settingsAPI";
 
 export interface SettingsState {
   company_name?: string;
@@ -27,21 +28,18 @@ const initialState: SettingsState = {
 };
 
 // Define API base URL
-const API_BASE_URL = "http://localhost:5000/settings";
-const AUTH_HEADER = {
-  Authorization:
-    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZGJOYW1lIjoiY2xpZW50XzliMWRlYjRkXzNiN2RfNGJhZF85YmRkXzJiMGQ3YjNkY2I2ZCIsImlhdCI6MTczODIzNjM2OCwiZXhwIjoxNzM4MjQ3MTY4fQ.vEaYir2FP44tFhF3Qs42zV_OsWu53gKiDTA6RVVwzhk",
-};
+// const API_BASE_URL = "http://localhost:5000/settings";
+// const AUTH_HEADER = {
+//   Authorization:
+//     "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZGJOYW1lIjoiY2xpZW50XzliMWRlYjRkXzNiN2RfNGJhZF85YmRkXzJiMGQ3YjNkY2I2ZCIsImlhdCI6MTczODIzNjM2OCwiZXhwIjoxNzM4MjQ3MTY4fQ.vEaYir2FP44tFhF3Qs42zV_OsWu53gKiDTA6RVVwzhk",
+// };
 
 export const fetchSettings = createAsyncThunk(
   "settings/fetchSettings",
   async () => {
-    const response = await axios.get(`${API_BASE_URL}`, {
-      headers: AUTH_HEADER,
-    });
+    const response = await settingsAPI.getSetting();
 
-    console.log(response.data.result[0]);
-    
+    console.log(">>>>>",response.data.result[0]);
 
     return response.data.result?.length ? response.data.result[0] : initialState;
   }
@@ -54,12 +52,7 @@ export const saveSettings = createAsyncThunk(
 
     console.log("Sending settings:", sanitizedSettings);
 
-    const response = await axios.put(`${API_BASE_URL}/update-settings`, sanitizedSettings, {
-      headers: {
-        ...AUTH_HEADER,
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await settingsAPI.updateSettings(sanitizedSettings);
 
     if (response.status !== 200) {
       throw new Error("Failed to save settings");

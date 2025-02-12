@@ -1,5 +1,7 @@
+import AddProduct from "../components/AdminPanelComponent/AddProduct";
 import CreateProductForm from "../components/AdminPanelComponent/CreateProductForm";
 import Settings from "../components/AdminPanelComponent/SettingsComponent";
+import UsersComponet from "../components/AdminPanelComponent/UsersComponet";
 import { DashboardData, ProductMeta } from "./config";
 import { BooleanType, DataType, InputType } from "./constants";
 import { iconMap } from "./iconMap";
@@ -63,7 +65,7 @@ export const dashboardData: DashboardData = {
   },
   add_product: {
     text: "Add Product",
-    component: <div>Add Product</div>,
+    component: <AddProduct />,
     icon: iconMap["product"],
   },
   view_edit_products: {
@@ -78,7 +80,7 @@ export const dashboardData: DashboardData = {
   },
   users: {
     text: "Users",
-    component: <div>Bookings</div>,
+    component: <UsersComponet />,
     icon: iconMap["users"],
   },
   manage_brand: {
