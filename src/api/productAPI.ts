@@ -4,8 +4,12 @@ const prodcutAPI = {
     getProductFields: async () => {
         try {
             const response = await axiosInstance.get("/settings");
+            console.log("--------", response);
+            
             return response.data;
         } catch (error) {
+            console.log(">>>>>>", error);
+            
             throw error;
         }
     },

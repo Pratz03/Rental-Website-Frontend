@@ -250,7 +250,7 @@ function CreateProductForm() {
                             error={!!errors[field.id as string]?.key}
                             helperText={errors[field.id as string]?.key}
                             disabled={
-                              !(field.key === "product_type")
+                              !(field.key === "product_type" || field.key === "brand")
                                 ? field.disabled
                                 : true
                             }
@@ -269,7 +269,7 @@ function CreateProductForm() {
                               )
                             }
                             disabled={
-                              !(field.key === "product_type")
+                              !(field.key === "product_type" || field.key === "brand")
                                 ? field.disabled
                                 : true
                             }
@@ -282,7 +282,7 @@ function CreateProductForm() {
                             fullWidth
                             error={!!errors[field.id as string]?.dataType}
                           >
-                            <InputLabel>Type</InputLabel>
+                            <InputLabel className={field.disabled ? "disabled-label" : ""}>Type</InputLabel>
                             <Select
                               value={field.dataType ? field.dataType : ""}
                               label="Type"
@@ -329,7 +329,7 @@ function CreateProductForm() {
                         )}
                       </Grid>
                       <Grid item xs={1} sm={1} md={1} sx={{ m: "auto" }}>
-                        {!field.disabled && !(field.key === "product_type") && (
+                        {!field.disabled && !(field.key === "product_type" || field.key === "brand") && (
                           <IconButton
                             onClick={() => deleteField(field.id as string)}
                             color="error"

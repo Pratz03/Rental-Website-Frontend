@@ -17,7 +17,8 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router";
 import { login } from "../../api/authAPI";
 import theme from "../../theme";
-import { useTenantId } from "../../helpers/helper";
+import { useTenantId } from "../../hooks/tenantHook";
+
 // import ForgotPassword from './components/ForgotPassword';
 // import AppTheme from '../shared-theme/AppTheme';
 // import ColorModeSelect from '../shared-theme/ColorModeSelect';

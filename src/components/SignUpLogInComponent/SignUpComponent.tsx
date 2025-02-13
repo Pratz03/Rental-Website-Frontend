@@ -14,8 +14,8 @@ import {
 import { styled } from "@mui/material/styles";
 import theme from "../../theme";
 import { UserData } from "../../helpers/config";
-import { useTenantId } from "../../helpers/helper";
 import userAPI from "../../api/userApi";
+import { useTenantId } from "../../hooks/tenantHook";
 
 interface Props {
   handleClick: (key: string) => void;

@@ -13,6 +13,7 @@ import { InputType } from "../helpers/constants";
 import { useEffect, useState } from "react";
 import _ from "lodash";
 import { ProductMeta } from "../helpers/config";
+import theme from "../theme";
 
 function Home() {
   const [option, setOption] = useState("");
@@ -88,7 +89,7 @@ function Home() {
                     slotProps={{
                       input: {
                         endAdornment: (
-                          <InputAdornment position="end">
+                          <InputAdornment position="end" sx={{ color: theme.palette.text.primary }}>
                             {field.metric}
                           </InputAdornment>
                         ),

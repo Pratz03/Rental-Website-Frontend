@@ -19,18 +19,17 @@ export const productMetadata: ProductMeta[] = [
   },
   {
     id: uuid(),
-    key: "condition",
-    label: "Condition",
+    key: "description",
+    label: "Description",
     metric: "",
-    inputType: InputType.SELECT, // Dropdown for selecting condition
+    inputType: InputType.INPUT,
     dataType: DataType.STRING,
-    options: '["New", "Used", "Refurbished"]',
     disabled: true
   },
   {
     id: uuid(),
-    key: "description",
-    label: "Description",
+    key: "image",
+    label: "Image",
     metric: "",
     inputType: InputType.INPUT,
     dataType: DataType.STRING,
@@ -47,8 +46,28 @@ export const productMetadata: ProductMeta[] = [
   },
   {
     id: uuid(),
+    key: "condition",
+    label: "Condition",
+    metric: "",
+    inputType: InputType.SELECT, // Dropdown for selecting condition
+    dataType: DataType.STRING,
+    options: '["New", "Used", "Refurbished"]',
+    disabled: true
+  },
+  {
+    id: uuid(),
     key: "product_type",
     label: "Product Type",
+    metric: "",
+    inputType: InputType.SELECT, // Dropdown for product types
+    dataType: DataType.STRING,
+    options: "",
+    disabled: false
+  },
+  {
+    id: uuid(),
+    key: "brand",
+    label: "Brand",
     metric: "",
     inputType: InputType.SELECT, // Dropdown for product types
     dataType: DataType.STRING,
