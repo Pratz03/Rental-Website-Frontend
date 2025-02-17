@@ -23,6 +23,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
 import "../../styles/createForm.css"
 import prodcutAPI from "../../api/productAPI";
+import settingsAPI from "../../api/settingsAPI";
 
 function CreateProductForm() {
   const [inputType, setInputType] = useState("");
@@ -150,7 +151,10 @@ function CreateProductForm() {
         prevFields.map((field) => ({ ...field, disabled: true }))
       );
       console.log("Form Submitted", productFields);
-      const updateFields = prodcutAPI.updateProductFields(productFields);
+      const data = {
+        product_fields: productFields
+      }
+      const updateFields = settingsAPI.updateSettings(data);
       console.log("Form Submitted", updateFields);
     }
   };

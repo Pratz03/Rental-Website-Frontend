@@ -1,5 +1,6 @@
 import AddProduct from "../components/AdminPanelComponent/AddProduct";
 import CreateProductForm from "../components/AdminPanelComponent/CreateProductForm";
+import EditProductMain from "../components/AdminPanelComponent/EditProductMain";
 import Settings from "../components/AdminPanelComponent/SettingsComponent";
 import UsersComponet from "../components/AdminPanelComponent/UsersComponet";
 import { DashboardData, ProductMeta } from "./config";
@@ -89,7 +90,7 @@ export const dashboardData: DashboardData = {
   },
   view_edit_products: {
     text: "View/Edit Products",
-    component: <div>View/Edit Products</div>,
+    component: <EditProductMain />,
     icon: iconMap["edit"],
   },
   bookings: {

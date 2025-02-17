@@ -1,24 +1,32 @@
+import React, { useEffect, useState } from "react";
+import prodcutAPI from "../api/productAPI";
+import { ProductMeta } from "../helpers/config";
+import _ from "lodash";
+import { DataType, InputType } from "../helpers/constants";
 import {
   Box,
   Button,
   FormControl,
   Grid,
+  IconButton,
   InputAdornment,
   InputLabel,
   MenuItem,
+  Paper,
   Select,
+  styled,
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { ProductMeta } from "../../helpers/config";
-import { DataType, InputType } from "../../helpers/constants";
-import prodcutAPI from "../../api/productAPI";
-import _ from "lodash";
-import theme from "../../theme";
-import { AxiosError } from "axios";
+import theme from "../theme";
 
-function AddProduct() {
+interface Props {
+  key: string;
+  initialData?: Record<string, string>;
+  handleChange: (product: any) => void;
+}
+
+function ProductFormComponent() {
   const [productFields, setProductFields] = useState<ProductMeta[]>();
   const [productData, setProductData] = useState<Record<string, string>>({});
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -109,7 +117,6 @@ function AddProduct() {
       console.error("Error fetching product fields:", error);
     }
   }, []);
-
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       <Typography
@@ -221,4 +228,4 @@ function AddProduct() {
   );
 }
 
-export default AddProduct;
+export default ProductFormComponent;

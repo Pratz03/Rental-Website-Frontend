@@ -13,10 +13,18 @@ const prodcutAPI = {
             throw error;
         }
     },
-    updateProductFields: async (fieldsData: any) => {
+    AddProduct: async (fieldsData: any) => {
         try {
-            const response = await axiosInstance.put("/settings/update-settings", { product_fields: fieldsData })
-            return response;
+            const response = await axiosInstance.post("/products", fieldsData)
+            return response.data;
+        } catch (error) {
+            throw error;
+        }
+    },
+    getProductData : async () => {
+        try {
+            const response = await axiosInstance.get("/products")
+            return response.data.products;
         } catch (error) {
             throw error;
         }

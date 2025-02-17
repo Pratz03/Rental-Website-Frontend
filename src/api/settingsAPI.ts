@@ -5,7 +5,7 @@ const settingsAPI = {
     getSetting: async () => {
         return await axiosInstance.get("/settings")
     },
-    updateSettings: async (settingsData: SettingsState) => {
+    updateSettings: async (settingsData: any) => {
         try {
             const response = await axiosInstance.put("/settings/update-settings", settingsData);
             console.log("Update successful:", response.data);
