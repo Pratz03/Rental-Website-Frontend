@@ -13,13 +13,29 @@ import {
 import React, { useEffect, useState } from "react";
 import prodcutAPI from "../../api/productAPI";
 import DeleteIcon from "@mui/icons-material/Delete";
-import EditRoundedIcon from '@mui/icons-material/EditRounded';
+import EditRoundedIcon from "@mui/icons-material/EditRounded";
 import theme from "../../theme";
 import EditProductComponent from "./EditProductComponent";
 
 function EditProductMain() {
   const [productData, setProductData] = useState<any[]>([]);
   const [columns, setColumns] = useState<string[]>([]);
+  const [isUpdate, setIsUpdate] = useState(false);
+
+  const handleUpdate = (isDataUpdated: boolean) => {
+    setIsUpdate(isDataUpdated);
+  };
+
+  const deleteProduct = (id: string) => {
+    console.log(id)
+    try {
+      const response = prodcutAPI.deleteProductData(id);
+      console.log("::", response);
+      handleUpdate(true);
+    } catch (error) {
+      
+    }
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,7 +49,8 @@ function EditProductMain() {
     };
 
     fetchData();
-  }, []);
+    setIsUpdate(false);
+  }, [isUpdate]);
 
   return (
     <Box
@@ -63,7 +80,7 @@ function EditProductMain() {
         component={Paper}
         sx={{
           flexGrow: 1,
-          overflowY: "auto", // Enables scrolling only for table body
+          overflowY: "auto",
           maxHeight: "calc(80vh - 50px)",
         }}
       >
@@ -110,11 +127,15 @@ function EditProductMain() {
               productData.map((product, index) => (
                 <TableRow key={index}>
                   <TableCell>
-                    <EditProductComponent columns={columns} productData={product} />
+                    <EditProductComponent
+                      columns={columns}
+                      productData={product}
+                      isDataUpdated={(value) => handleUpdate(value)}
+                    />
                   </TableCell>
                   <TableCell>
                     <IconButton
-                      //   onClick={() => deleteField(field.id as string)}
+                      onClick={() => deleteProduct(product["product_id"] as string)}
                       color="error"
                     >
                       <DeleteIcon />

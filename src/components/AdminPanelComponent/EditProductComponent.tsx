@@ -13,10 +13,13 @@ import {
 import EditRoundedIcon from "@mui/icons-material/EditRounded";
 import theme from "../../theme";
 import AddProduct from "./AddProduct";
+import ProductFormComponent from "../../common-components/ProductFormComponent";
+import prodcutAPI from "../../api/productAPI";
 
 interface Props {
   columns: string[];
   productData: any;
+  isDataUpdated: (value: boolean) => void;
 }
 
 function EditProductComponent(props: Props) {
@@ -47,11 +50,19 @@ function EditProductComponent(props: Props) {
   };
 
   const handleSubmit = () => {
-    console.log("----", productData, updatedData);
+    console.log("from child = ", productData);
+    
+    try {
+        prodcutAPI.editProductData(props.productData.product_id, productData)
+        props.isDataUpdated(true);
+        handleClose();
+    } catch (error) {
+        throw error
+    }
   };
 
   useEffect(() => {
-    console.log("++++++++", props.columns, props.productData);
+    // console.log("++++++++", props.columns, props.productData);
     setProductData(props.productData);
   }, [props.productData]);
 
@@ -63,7 +74,7 @@ function EditProductComponent(props: Props) {
       <Dialog
         fullScreen={fullScreen}
         fullWidth={true}
-        maxWidth={"sm"}
+        maxWidth={"md"}
         open={open}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
@@ -96,7 +107,11 @@ function EditProductComponent(props: Props) {
                     )
                 )
             )} */}
-            <AddProduct/> 
+          <ProductFormComponent
+            key="edit_product"
+            initialData={props.productData}
+            handleChange={(productData) => setProductData(productData)}
+          />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>

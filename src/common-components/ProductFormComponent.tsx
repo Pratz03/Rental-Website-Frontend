@@ -24,18 +24,51 @@ interface Props {
   key: string;
   initialData?: Record<string, string>;
   handleChange: (product: any) => void;
+  //   resetFields?: Record<string, string>;
 }
 
-function ProductFormComponent() {
+function ProductFormComponent(props: Props) {
   const [productFields, setProductFields] = useState<ProductMeta[]>();
-  const [productData, setProductData] = useState<Record<string, string>>({});
+  const [productData, setProductData] = useState<Record<string, string>>(
+    props.initialData ? props.initialData : {}
+  );
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [updatedData, setUpdatedData] = useState<Record<string, string>>({});
 
   const handleChange = (event: any, type: DataType) => {
     if (!event.target.name) return;
     const { name, value } = event.target;
-    setProductData({ ...productData, [name]: value });
-    validateFields(name, value, type);
+
+    // Update product data immediately
+    const updatedProductData = { ...productData, [name]: value };
+    const editedData = { ...updatedData, [name]: value };
+
+    // Handle validation
+    const error = validateFields(name, value, type);
+    if (error) {
+      setErrors((prevErr) => ({ ...prevErr, [name]: error }));
+    } else {
+      setErrors((prevErr) => ({ ...prevErr, [name]: "" }));
+    }
+
+    // Update both states
+    setProductData(updatedProductData);
+    setUpdatedData((prevData) => {
+      // If in edit mode, track only the modified fields
+      if (props.key !== "add_product") {
+        return { ...prevData, [name]: value };
+      }
+      return prevData;
+    });
+
+    // Pass data to parent component
+    if (props.key === "add_product") {
+      // For Add: Pass the full product data
+      props.handleChange(updatedProductData);
+    } else {
+      // For Edit: Pass only the changed fields
+      props.handleChange(editedData);
+    }
   };
 
   const validateFields = (name: string, value: string, type: DataType) => {
@@ -61,7 +94,7 @@ function ProductFormComponent() {
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault(); // Prevent default form submission
+    event.preventDefault();
 
     let newErrors: Record<string, string> = {};
     let isValid = true;
@@ -79,24 +112,10 @@ function ProductFormComponent() {
     if (!isValid) {
       return;
     }
-
-    try {
-      const response = await prodcutAPI.AddProduct(productData);
-
-      console.log("====", response);
-
-      const resetData = Object.keys(productData).reduce((acc, key) => {
-        acc[key] = "";
-        return acc;
-      }, {} as Record<string, string>);
-
-      setProductData(resetData);
-    } catch (error) {
-      console.error("Error updating product fields:", error);
-    }
   };
 
   useEffect(() => {
+    console.log("...", props.initialData);
     try {
       prodcutAPI.getProductFields().then((data) => {
         setProductFields(_.get(data, "result[0].product_fields"));
@@ -110,29 +129,41 @@ function ProductFormComponent() {
           initialData[field.key] = "";
         });
 
-        setProductData(initialData);
+        setProductData(props.initialData ? props.initialData : initialData);
         setErrors(initialData);
       });
     } catch (error) {
       console.error("Error fetching product fields:", error);
     }
   }, []);
+
+  useEffect(() => {
+    setProductData(props.initialData as Record<string, string>);
+  }, [props.initialData]);
+
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
-      <Typography
-        variant="h6"
-        component="div"
-        sx={{
-          position: "fixed",
-          width: "100%",
-          background: "#ffffff",
-          padding: "20px 0",
-          zIndex: 10,
+      {props.key === "add_product" && (
+        <Typography
+          variant="h6"
+          component="div"
+          sx={{
+            position: "fixed",
+            width: "100%",
+            background: "#ffffff",
+            padding: "20px 0",
+            zIndex: 10,
+          }}
+        >
+          Add Product
+        </Typography>
+      )}
+      <div
+        style={{
+          flexGrow: 1,
+          paddingTop: props.key === "add_product" ? "90px" : "",
         }}
       >
-        Add Product
-      </Typography>
-      <div style={{ flexGrow: 1, paddingTop: "90px" }}>
         <Box
           component="form"
           sx={{ p: 4, border: "1px solid #e9e9e9", borderRadius: 2 }}
@@ -216,11 +247,11 @@ function ProductFormComponent() {
                   )}
                 </Grid>
               ))}
-            <Grid item xs={12} sm={12} md={12}>
+            {/* <Grid item xs={12} sm={12} md={12}>
               <Button type="submit" variant="contained" color="secondary">
                 Add product
               </Button>
-            </Grid>
+            </Grid> */}
           </Grid>
         </Box>
       </div>
