@@ -12,3 +12,14 @@
 .disabled-label {
     color: rgba(0, 0, 0, 0.38) !important;
 }
+
+.create-form-inner {
+    border: 1px solid rgb(72, 88, 160);
+    border-radius: 8px;
+    height: 68vh;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow-y: auto;
+}

@@ -16,6 +16,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditRoundedIcon from "@mui/icons-material/EditRounded";
 import theme from "../../theme";
 import EditProductComponent from "./EditProductComponent";
+import "../../styles/editProduct.css"
 
 function EditProductMain() {
   const [productData, setProductData] = useState<any[]>([]);
@@ -57,7 +58,7 @@ function EditProductMain() {
       sx={{
         display: "flex",
         flexDirection: "column",
-        height: "80vh",
+        height: "85vh",
         borderRadius: 2,
         p: 2,
       }}
@@ -147,8 +148,8 @@ function EditProductMain() {
                         ? product["booking_status"].map(
                             (booking: any, idx: number) => (
                               <div key={idx}>
-                                Pickup: {booking.pickup_date} <br />
-                                Drop: {booking.drop_date}
+                                <b>Pickup: </b>{booking.pickup_date} <br />
+                                <b>Drop: </b>{booking.drop_date}
                               </div>
                             )
                           )

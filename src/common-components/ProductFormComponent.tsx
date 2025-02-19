@@ -24,7 +24,7 @@ interface Props {
   key: string;
   initialData?: Record<string, string>;
   handleChange: (product: any) => void;
-  //   resetFields?: Record<string, string>;
+  isDataSubmitted?: boolean;
 }
 
 function ProductFormComponent(props: Props) {
@@ -115,6 +115,15 @@ function ProductFormComponent(props: Props) {
   };
 
   useEffect(() => {
+    const resetData = Object.keys(productData).reduce((acc, key) => {
+      acc[key] = "";
+      return acc;
+    }, {} as Record<string, string>);
+
+    setProductData(resetData);
+  }, [props.isDataSubmitted]);
+
+  useEffect(() => {
     console.log("...", props.initialData);
     try {
       prodcutAPI.getProductFields().then((data) => {
@@ -166,7 +175,7 @@ function ProductFormComponent(props: Props) {
       >
         <Box
           component="form"
-          sx={{ p: 4, border: "1px solid #e9e9e9", borderRadius: 2 }}
+          sx={{ p: "0 20px", borderRadius: 2 }}
           onSubmit={handleSubmit}
         >
           <Grid
@@ -247,11 +256,6 @@ function ProductFormComponent(props: Props) {
                   )}
                 </Grid>
               ))}
-            {/* <Grid item xs={12} sm={12} md={12}>
-              <Button type="submit" variant="contained" color="secondary">
-                Add product
-              </Button>
-            </Grid> */}
           </Grid>
         </Box>
       </div>

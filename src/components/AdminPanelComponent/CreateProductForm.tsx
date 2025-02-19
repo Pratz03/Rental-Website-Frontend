@@ -21,7 +21,7 @@ import { v4 as uuid } from "uuid";
 import { productMetadata } from "../../helpers/metaData";
 import DeleteIcon from "@mui/icons-material/Delete";
 import axios from "axios";
-import "../../styles/createForm.css"
+import "../../styles/createForm.css";
 import prodcutAPI from "../../api/productAPI";
 import settingsAPI from "../../api/settingsAPI";
 
@@ -33,17 +33,13 @@ function CreateProductForm() {
     [key: string]: { key?: string; dataType?: string; options?: string };
   }>({});
 
-  const AUTH_HEADER = {
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZGJOYW1lIjoiY2xpZW50XzliMWRlYjRkXzNiN2RfNGJhZF85YmRkXzJiMGQ3YjNkY2I2ZCIsImlhdCI6MTczODc0MDE1MiwiZXhwIjoxNzM4NzUwOTUyfQ.ZcyMmkHxcaFbjvi-_B4aLRrSw_MtPwIstQKXhN78Sq0",
-  };
 
   const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body1,
     padding: theme.spacing(2.5),
     border: `1px solid ${theme.palette.secondary.main}`,
     textAlign: "center",
-    color: theme.palette.text.primary,
+    // color: theme.palette.text.primary,
     borderRadius: 8,
     display: "flex",
     flexDirection: "column",
@@ -52,7 +48,7 @@ function CreateProductForm() {
   const BootstrapButton = styled(Button)({
     textTransform: "none",
     backgroundColor: theme.palette.secondary.main,
-    color: theme.palette.text.secondary,
+    color: theme.palette.secondary.contrastText,
     margin: "20px 0 0",
   });
 
@@ -152,8 +148,8 @@ function CreateProductForm() {
       );
       console.log("Form Submitted", productFields);
       const data = {
-        product_fields: productFields
-      }
+        product_fields: productFields,
+      };
       const updateFields = settingsAPI.updateSettings(data);
       console.log("Form Submitted", updateFields);
     }
@@ -174,13 +170,13 @@ function CreateProductForm() {
           position: "fixed",
           width: "100%",
           background: "#ffffff",
-          padding: "20px 0",
+          padding: "40px 0 20px",
           zIndex: 10,
         }}
       >
         Create Product Form
       </Typography>
-      <div style={{ flexGrow: 1, overflowY: "auto", paddingTop: "90px" }}>
+      <div style={{ flexGrow: 1, paddingTop: "100px" }}>
         <Box sx={{ flexGrow: 1 }}>
           <Grid
             container
@@ -210,149 +206,168 @@ function CreateProductForm() {
             </Grid>
             <Grid item xs={4} sm={8} md={8}>
               {productFields.length > 0 && (
-                <div
-                  style={{
-                    border: `1px solid ${theme.palette.secondary.main}`,
-                    borderRadius: 8,
-                    height: "fit-content",
-                    padding: "20px",
-                  }}
-                >
-                  <Typography variant="body1" color={theme.palette.error.main} className="note">
-                    Note: Ensure all fields are correctly filled before submission, as they cannot be modified afterward.
-                  </Typography>
-                  {productFields.map((field) => (
-                    <Grid
-                      key={field.id}
-                      container
-                      spacing={{ xs: 2, md: 3 }}
-                      columns={{ xs: 4, sm: 8, md: 12 }}
-                      style={{ marginBottom: "30px" }}
+                <div className="create-form-inner">
+                  <div style={{ overflowY: "auto" }}>
+                    <Typography
+                      variant="body1"
+                      color={theme.palette.error.main}
+                      className="note"
                     >
-                      <Grid item xs={3} sm={3} md={7}>
-                        <div
-                          style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            alignItems: "center",
-                          }}
-                        >
-                          <TextField
-                            label="Field Name"
-                            variant="outlined"
-                            placeholder="e.g., Milage, RAM etc"
-                            sx={{ mr: 1 }}
-                            fullWidth
-                            value={field.label}
-                            onChange={(e) =>
-                              handleChange(
-                                field.id as string,
-                                "label",
-                                e.target.value
-                              )
-                            }
-                            error={!!errors[field.id as string]?.key}
-                            helperText={errors[field.id as string]?.key}
-                            disabled={
-                              !(field.key === "product_type" || field.key === "brand")
-                                ? field.disabled
-                                : true
-                            }
-                          />
-                          <TextField
-                            label="Metric (Optional)"
-                            variant="outlined"
-                            placeholder="e.g., km/l, years, inch etc"
-                            size="small"
-                            value={field.metric}
-                            onChange={(e) =>
-                              handleChange(
-                                field.id as string,
-                                "metric",
-                                e.target.value
-                              )
-                            }
-                            disabled={
-                              !(field.key === "product_type" || field.key === "brand")
-                                ? field.disabled
-                                : true
-                            }
-                          />
-                        </div>
-                      </Grid>
-                      <Grid item xs={3} sm={3} md={4} sx={{ p: 0 }}>
-                        {field.inputType === InputType.INPUT ? (
-                          <FormControl
-                            fullWidth
-                            error={!!errors[field.id as string]?.dataType}
+                      Note: Ensure all fields are correctly filled before
+                      submission, as they cannot be modified afterward.
+                    </Typography>
+                    {productFields.map((field) => (
+                      <Grid
+                        key={field.id}
+                        container
+                        spacing={{ xs: 2, md: 3 }}
+                        columns={{ xs: 4, sm: 8, md: 12 }}
+                        style={{ marginBottom: "30px" }}
+                      >
+                        <Grid item xs={3} sm={3} md={7}>
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "row",
+                              alignItems: "center",
+                            }}
                           >
-                            <InputLabel className={field.disabled ? "disabled-label" : ""}>Type</InputLabel>
-                            <Select
-                              value={field.dataType ? field.dataType : ""}
-                              label="Type"
+                            <TextField
+                              label="Field Name"
+                              variant="outlined"
+                              placeholder="e.g., Milage, RAM etc"
+                              sx={{ mr: 1 }}
+                              fullWidth
+                              value={field.label}
                               onChange={(e) =>
                                 handleChange(
                                   field.id as string,
-                                  "dataType",
+                                  "label",
                                   e.target.value
                                 )
                               }
-                              disabled={field.disabled}
+                              error={!!errors[field.id as string]?.key}
+                              helperText={errors[field.id as string]?.key}
+                              disabled={
+                                !(
+                                  field.key === "product_type" ||
+                                  field.key === "brand"
+                                )
+                                  ? field.disabled
+                                  : true
+                              }
+                            />
+                            <TextField
+                              label="Metric (Optional)"
+                              variant="outlined"
+                              placeholder="e.g., km/l, years, inch etc"
+                              size="small"
+                              value={field.metric}
+                              onChange={(e) =>
+                                handleChange(
+                                  field.id as string,
+                                  "metric",
+                                  e.target.value
+                                )
+                              }
+                              disabled={
+                                !(
+                                  field.key === "product_type" ||
+                                  field.key === "brand"
+                                )
+                                  ? field.disabled
+                                  : true
+                              }
+                            />
+                          </div>
+                        </Grid>
+                        <Grid item xs={3} sm={3} md={4} sx={{ p: 0 }}>
+                          {field.inputType === InputType.INPUT ? (
+                            <FormControl
+                              fullWidth
+                              error={!!errors[field.id as string]?.dataType}
                             >
-                              <MenuItem value={DataType.STRING}>
-                                String
-                              </MenuItem>
-                              <MenuItem value={DataType.NUMBER}>
-                                Number
-                              </MenuItem>
-                            </Select>
-                            {errors[field.id as string]?.dataType && (
-                              <Typography color="error">
-                                {errors[field.id as string]?.dataType}
-                              </Typography>
+                              <InputLabel
+                                className={
+                                  field.disabled ? "disabled-label" : ""
+                                }
+                              >
+                                Type
+                              </InputLabel>
+                              <Select
+                                value={field.dataType ? field.dataType : ""}
+                                label="Type"
+                                onChange={(e) =>
+                                  handleChange(
+                                    field.id as string,
+                                    "dataType",
+                                    e.target.value
+                                  )
+                                }
+                                disabled={field.disabled}
+                              >
+                                <MenuItem value={DataType.STRING}>
+                                  String
+                                </MenuItem>
+                                <MenuItem value={DataType.NUMBER}>
+                                  Number
+                                </MenuItem>
+                              </Select>
+                              {errors[field.id as string]?.dataType && (
+                                <Typography color="error">
+                                  {errors[field.id as string]?.dataType}
+                                </Typography>
+                              )}
+                            </FormControl>
+                          ) : (
+                            <TextField
+                              label="Options"
+                              variant="outlined"
+                              placeholder="['opt1', 'opt2']"
+                              fullWidth
+                              value={field.options}
+                              onChange={(e) =>
+                                handleChange(
+                                  field.id as string,
+                                  "options",
+                                  e.target.value
+                                )
+                              }
+                              error={!!errors[field.id as string]?.options}
+                              helperText={errors[field.id as string]?.options}
+                              disabled={field.disabled}
+                            />
+                          )}
+                        </Grid>
+                        <Grid item xs={1} sm={1} md={1} sx={{ m: "auto" }}>
+                          {!field.disabled &&
+                            !(
+                              field.key === "product_type" ||
+                              field.key === "brand"
+                            ) && (
+                              <IconButton
+                                onClick={() => deleteField(field.id as string)}
+                                color="error"
+                              >
+                                <DeleteIcon />
+                              </IconButton>
                             )}
-                          </FormControl>
-                        ) : (
-                          <TextField
-                            label="Options"
-                            variant="outlined"
-                            placeholder="['opt1', 'opt2']"
-                            fullWidth
-                            value={field.options}
-                            onChange={(e) =>
-                              handleChange(
-                                field.id as string,
-                                "options",
-                                e.target.value
-                              )
-                            }
-                            error={!!errors[field.id as string]?.options}
-                            helperText={errors[field.id as string]?.options}
-                            disabled={field.disabled}
-                          />
-                        )}
+                        </Grid>
                       </Grid>
-                      <Grid item xs={1} sm={1} md={1} sx={{ m: "auto" }}>
-                        {!field.disabled && !(field.key === "product_type" || field.key === "brand") && (
-                          <IconButton
-                            onClick={() => deleteField(field.id as string)}
-                            color="error"
-                          >
-                            <DeleteIcon />
-                          </IconButton>
-                        )}
-                      </Grid>
-                    </Grid>
-                  ))}
-                  <Button
-                    variant="contained"
-                    component="label"
-                    color="secondary"
-                    size="large"
-                    onClick={handleSubmit}
-                  >
-                    Submit
-                  </Button>
+                    ))}
+                  </div>
+                  <div style={{ display: "flex", justifyContent: "flex-end", padding: "20px 0 0" }}>
+                    <Button
+                      variant="contained"
+                      component="label"
+                      color="secondary"
+                      size="large"
+                      onClick={handleSubmit}
+                      sx={{ width: "200px" }}
+                    >
+                      Submit
+                    </Button>
+                  </div>
                 </div>
               )}
             </Grid>

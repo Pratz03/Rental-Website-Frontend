@@ -1,5 +1,7 @@
 import AddProduct from "../components/AdminPanelComponent/AddProduct";
+import BookingsComponent from "../components/AdminPanelComponent/BookingsComponent";
 import CreateProductForm from "../components/AdminPanelComponent/CreateProductForm";
+import DashboardComponent from "../components/AdminPanelComponent/DashboardComponent";
 import EditProductMain from "../components/AdminPanelComponent/EditProductMain";
 import Settings from "../components/AdminPanelComponent/SettingsComponent";
 import UsersComponet from "../components/AdminPanelComponent/UsersComponet";
@@ -80,7 +82,7 @@ export const productMetadata: ProductMeta[] = [
 export const dashboardData: DashboardData = {
   dashboard: {
     text: "Dashboard",
-    component: <div>Dashboard</div>,
+    component: <DashboardComponent />,
     icon: iconMap["dashboard"],
   },
   add_product: {
@@ -95,7 +97,7 @@ export const dashboardData: DashboardData = {
   },
   bookings: {
     text: "Bookings",
-    component: <div>Bookings</div>,
+    component: <BookingsComponent />,
     icon: iconMap["bookings"],
   },
   users: {

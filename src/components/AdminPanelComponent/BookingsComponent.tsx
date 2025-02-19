@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Paper,
@@ -9,29 +10,28 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import userAPI from "../../api/userApi";
+import bookingsAPI from "../../api/bookingsAPI";
 
-function UsersComponet() {
-  const [users, setUsers] = useState<any[]>([]);
+function BookingsComponent() {
+  const [bookings, setBookings] = useState<any[]>([]);
   const [columns, setColumns] = useState<string[]>([]);
 
   useEffect(() => {
-    const fetchUsersData = async () => {
+    const fetchBookingsData = async () => {
       try {
-        const response = await userAPI.getAllUsers();
+        const response = await bookingsAPI.getAllBookings();
         const columns = Object.keys(response[0]).filter((key) => {
           return key !== "user_id" && key !== "password" && key !== "username";
         });
         setColumns(columns);
-        setUsers(response);
+        setBookings(response);
         console.log("++++", response, columns);
       } catch (error) {
         throw error;
       }
     };
 
-    fetchUsersData();
+    fetchBookingsData();
   }, []);
 
   return (
@@ -55,7 +55,7 @@ function UsersComponet() {
           zIndex: 10,
         }}
       >
-        View / Edit Products
+        Bookings
       </Typography>
 
       <TableContainer
@@ -73,13 +73,7 @@ function UsersComponet() {
                 <TableCell
                   key={key}
                   style={{
-                    minWidth:
-                      key === "address" ||
-                      key === "email" ||
-                      key === "full_name" ||
-                      key === "profile_photo"
-                        ? 200
-                        : 120,
+                    minWidth: key === "payment_status" ? 150 : 120,
                     fontWeight: 600,
                   }}
                 >
@@ -91,23 +85,20 @@ function UsersComponet() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {users.length > 0 ? (
-              users.map((user, index) => (
+            {bookings.length > 0 ? (
+              bookings.map((booking, index) => (
                 <TableRow key={index}>
-                  {columns.map(
-                    (key) =>
-                      user["role"] !== "admin" && (
-                        <TableCell key={`${index}-${key}`}>
-                          {user[key] || "N/A"}
-                        </TableCell>
-                      )
-                  )}
+                  {columns.map((key) => (
+                    <TableCell key={`${index}-${key}`}>
+                      {booking[key] || "N/A"}
+                    </TableCell>
+                  ))}
                 </TableRow>
               ))
             ) : (
               <TableRow>
                 <TableCell colSpan={columns.length} align="center">
-                  No Products Found
+                  No Bookings
                 </TableCell>
               </TableRow>
             )}
@@ -118,4 +109,4 @@ function UsersComponet() {
   );
 }
 
-export default UsersComponet;
+export default BookingsComponent;

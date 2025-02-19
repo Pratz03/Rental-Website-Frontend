@@ -95,22 +95,22 @@ function AdminPanelComponent() {
                   "& .MuiListItemIcon-root": {
                     color:
                       key === activeComponent
-                        ? theme.palette.text.secondary
+                        ? theme.palette.primary.contrastText
                         : theme.palette.text.primary,
                   },
                   "& .MuiTypography-root": {
                     color:
                       key === activeComponent
-                        ? theme.palette.text.secondary
+                        ? theme.palette.primary.contrastText
                         : theme.palette.text.primary,
                   },
                   "&:hover": {
                     backgroundColor: theme.palette.primary.main,
                     "& .MuiListItemIcon-root": {
-                      color: theme.palette.text.secondary,
+                      color: theme.palette.primary.contrastText,
                     },
                     "& .MuiTypography-root": {
-                      color: theme.palette.text.secondary,
+                      color: theme.palette.primary.contrastText,
                     },
                   },
                 }}

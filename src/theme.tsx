@@ -10,19 +10,23 @@ const secondary = {
   500: `#4858a0`,
 };
 
+const contrastTextPrimary = `#ffffff`;
+
+const contrastTextSecondary = `#ffffff`;
+
 const theme = createTheme({
   palette: {
     primary: {
       main: primary[500],
-    //   contrastText: "#ffffff",
+      contrastText: contrastTextPrimary,
     },
     secondary: {
       main: secondary[500],
-    //   contrastText: "#333333",
+      contrastText: contrastTextSecondary,
     },
     text: {
         primary: "#333333",
-        secondary: "#ffffff"
+        secondary: "#ffffff",
     },
   },
   typography: {

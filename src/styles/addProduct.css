@@ -1,0 +1,6 @@
+.add-product-main-container {
+    display: flex;
+    flex-direction: column;
+    height: 85vh;
+    overflow: hidden;
+}

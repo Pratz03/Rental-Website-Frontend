@@ -51,8 +51,8 @@ function SettingsComponent() {
   }, []);
 
   return (
-    <div style={{ marginTop: "40px" }}>
-      <Typography variant="h6" component="div">
+    <div>
+      <Typography variant="h6" component="div" style={{ padding: "40px 0 20px" }}>
         Brand Settings
       </Typography>
       <Grid className="setting-container" container spacing={2} rowSpacing={6}>

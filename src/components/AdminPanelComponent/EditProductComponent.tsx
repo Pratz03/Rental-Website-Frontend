@@ -26,7 +26,6 @@ function EditProductComponent(props: Props) {
   const [open, setOpen] = React.useState(false);
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
   const [productData, setProductData] = useState<any>({});
-  const [updatedData, setUpdatedData] = useState<any>({});
 
   const handleClickOpen = () => {
     console.log("++++++++", props.columns, props.productData);
@@ -35,18 +34,6 @@ function EditProductComponent(props: Props) {
 
   const handleClose = () => {
     setOpen(false);
-  };
-
-  const handleChange = (e: any) => {
-    const { name, value } = e.target;
-    setProductData((prevData: any) => ({
-      ...prevData,
-      [name]: value,
-    }));
-    setUpdatedData((prevData: any) => ({
-      ...prevData,
-      [name]: value,
-    }));
   };
 
   const handleSubmit = () => {
@@ -62,7 +49,6 @@ function EditProductComponent(props: Props) {
   };
 
   useEffect(() => {
-    // console.log("++++++++", props.columns, props.productData);
     setProductData(props.productData);
   }, [props.productData]);
 
@@ -82,31 +68,6 @@ function EditProductComponent(props: Props) {
       >
         <DialogTitle id="alert-dialog-title">{"Edit Product"}</DialogTitle>
         <DialogContent>
-          {/* <DialogContentText id="alert-dialog-description"></DialogContentText> */}
-          {/* {props.columns &&
-            props.columns.map(
-              (column: string, index: number) =>
-                props.productData &&
-                Object.keys(props.productData).map(
-                  (value) =>
-                    column === value &&
-                    !(column === "booking_status") &&
-                    !(column === "product_id") && (
-                      <TextField
-                        id={`column-${column}`}
-                        name={column}
-                        label={column
-                          .replace(/_/g, " ")
-                          .replace(/\b\w/g, (char) => char.toUpperCase())}
-                        value={productData[column] || ""}
-                        onChange={handleChange}
-                        variant="outlined"
-                        sx={{ mt: 3 }}
-                        fullWidth
-                      />
-                    )
-                )
-            )} */}
           <ProductFormComponent
             key="edit_product"
             initialData={props.productData}

@@ -7,3 +7,7 @@
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+
+main.MuiBox-root.css-jx4u1d {
+  overflow: hidden;
+}
