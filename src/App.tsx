@@ -5,6 +5,10 @@ import { Route, Routes } from "react-router";
 import Home from "./components/Home";
 import AdminPanelComponent from "./components/AdminPanelComponent/AdminPanelComponent";
 import SignUpLogInComponent from "./components/SignUpLogInComponent/SignUpLogInComponent";
+import MenuBarComponent from "./components/HeaderFooterComponent/MenuBarComponent";
+import HomePageComonent from "./components/HomePageComponent/HomePageComonent";
+import ProductCardComponent from "./common-components/ProductCardComponent";
+import AllProductsComponent from "./components/ProductsComponent/AllProductsComponent";
 
 function App() {
 
@@ -17,6 +21,8 @@ function App() {
         <Route path={"/:tenantId"} element={<SignUpLogInComponent />} />
         <Route path="/:tenantId/home" element={<Home />} />
         <Route path="/:tenantId/admin" element={<AdminPanelComponent />} />
+        <Route path="/:tenantId/header" element={<HomePageComonent />} />
+        <Route path="/:tenantId/products" element={<AllProductsComponent />} />
       </Routes>
     </div>
   );

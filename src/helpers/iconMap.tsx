@@ -10,6 +10,11 @@ import DisplaySettingsRoundedIcon from '@mui/icons-material/DisplaySettingsRound
 import DynamicFormRoundedIcon from '@mui/icons-material/DynamicFormRounded';
 import TextFieldsRoundedIcon from '@mui/icons-material/TextFieldsRounded';
 import RuleRoundedIcon from '@mui/icons-material/RuleRounded';
+import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
+import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
+import DeliveryDiningRoundedIcon from '@mui/icons-material/DeliveryDiningRounded';
+import LocalOfferRoundedIcon from '@mui/icons-material/LocalOfferRounded';
+import HighQualityRoundedIcon from '@mui/icons-material/HighQualityRounded';
 
 export const iconMap: IconMap = {
     dashboard: <SpaceDashboardRoundedIcon />,
@@ -22,5 +27,10 @@ export const iconMap: IconMap = {
     inbox: <InboxIcon />,
     form: <DynamicFormRoundedIcon />,
     textfield: <TextFieldsRoundedIcon />,
-    select: <RuleRoundedIcon />
+    select: <RuleRoundedIcon />,
+    arrow_down: <KeyboardArrowDownRoundedIcon />,
+    cart: <ShoppingCartRoundedIcon />,
+    delivery: <DeliveryDiningRoundedIcon />,
+    price: <LocalOfferRoundedIcon />,
+    quality: <HighQualityRoundedIcon />
 }

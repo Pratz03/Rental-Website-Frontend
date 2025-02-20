@@ -183,7 +183,7 @@ function CreateProductForm() {
             spacing={{ xs: 2, md: 3 }}
             columns={{ xs: 4, sm: 8, md: 12 }}
           >
-            <Grid item xs={4} sm={8} md={4}>
+            <Grid item xs={2} sm={8} md={4}>
               <Item>
                 <Typography>Add Fields</Typography>
                 <BootstrapButton
@@ -204,7 +204,7 @@ function CreateProductForm() {
                 </BootstrapButton>
               </Item>
             </Grid>
-            <Grid item xs={4} sm={8} md={8}>
+            <Grid item xs={2} sm={8} md={8}>
               {productFields.length > 0 && (
                 <div className="create-form-inner">
                   <div style={{ overflowY: "auto" }}>

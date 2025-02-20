@@ -1,0 +1,10 @@
+.product-main-container {
+    margin-top: 84px;
+    padding: 40px 40px;
+}
+
+.filter-button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

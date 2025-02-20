@@ -1,0 +1,9 @@
+.footer-main-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 40px;
+}
+
+.inner-container {
+    display: flex;
+}
