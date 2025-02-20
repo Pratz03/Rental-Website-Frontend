@@ -68,10 +68,7 @@
 }
 
 .product-list-container {
-    display: flex;
-    align-items: center;
-    padding: 40px 0;
-    justify-content: space-around;
+    padding: 40px 30px;
 }
 
 .button-container {
@@ -107,7 +104,7 @@
     display: flex;
     width: 28vw;
     padding: 30px;
-    box-shadow: 0px 2px 20px 0px #dcdbdb;
+    box-shadow: 0px 2px 5px 0px #dcdbdb;
     flex-direction: column;
     border-radius: 8px;
 }

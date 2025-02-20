@@ -38,7 +38,7 @@ function MenuBarComponent() {
       position="fixed"
       color="inherit"
       sx={{
-        boxShadow: "7px 4px 5px #e9e9e9",
+        boxShadow: "0px 2px 5px #e9e9e9",
         padding: "10px 20px",
         top: 0,
         zIndex: 1100,

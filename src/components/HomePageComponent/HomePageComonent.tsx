@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MenuBarComponent from "../HeaderFooterComponent/MenuBarComponent";
 import "../../styles/homePage.css";
-import { Button, Divider, Grid, Typography } from "@mui/material";
+import {
+  Button,
+  Divider,
+  Grid,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
 import theme from "../../theme";
 import { iconMap } from "../../helpers/iconMap";
 import DeliveryDiningRoundedIcon from "@mui/icons-material/DeliveryDiningRounded";
@@ -9,11 +15,30 @@ import LocalOfferRoundedIcon from "@mui/icons-material/LocalOfferRounded";
 import HighQualityRoundedIcon from "@mui/icons-material/HighQualityRounded";
 import ProductCardComponent from "../../common-components/ProductCardComponent";
 import premium from "../../assets/premium.png";
+import truck from "../../assets/truck.png";
+import availability from "../../assets/availability.png";
 import crown from "../../assets/crown.png";
-import WorkspacePremiumRoundedIcon from '@mui/icons-material/WorkspacePremiumRounded';
+import WorkspacePremiumRoundedIcon from "@mui/icons-material/WorkspacePremiumRounded";
 import FooterComponent from "../HeaderFooterComponent/FooterComponent";
+import prodcutAPI from "../../api/productAPI";
 
 function HomePageComonent() {
+  const [products, setProducts] = useState([]);
+  const isMobile = useMediaQuery("(max-width: 768px)");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await prodcutAPI.getLimitedData(4, 0);
+        console.log(":::::::", response);
+        setProducts(response);
+      } catch (error) {
+        throw error;
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <div>
       <div>
@@ -81,11 +106,18 @@ function HomePageComonent() {
           </Typography>
           {/* <Divider sx={{ borderWidth: 1, mt: 1, borderColor: theme.palette.primary.main }} /> */}
         </div>
-        <div className="product-list-container">
-          <ProductCardComponent />
-          <ProductCardComponent />
-          <ProductCardComponent />
-        </div>
+        <Grid
+          container
+          spacing={{ xs: 2, md: 3.5 }}
+          columns={{ xs: 4, sm: 8, md: 12 }}
+          className="product-list-container"
+        >
+          {products.map((product: any, index) => (
+            <Grid item xs={4} sm={4} md={3} key={""}>
+              <ProductCardComponent productData={product} />
+            </Grid>
+          ))}
+        </Grid>
         <div className="button-container">
           <Button
             variant="contained"
@@ -131,15 +163,6 @@ function HomePageComonent() {
           {/* <Divider sx={{ borderWidth: 1, mt: 1, borderColor: theme.palette.primary.main }} /> */}
         </div>
       </div>
-      {/* <Divider
-        sx={{
-          p: 1,
-          width: "30%",
-          m: "auto",
-          borderColor: theme.palette.secondary.main,
-          borderBottomWidth: "medium",
-        }}
-      /> */}
       <div className="why-choose-us-container">
         <div className="poduct-heading-container">
           <Typography
@@ -149,53 +172,69 @@ function HomePageComonent() {
             Why Choose Us?
           </Typography>
           <div className="wcu-cardlist-container">
-            <div className="wcu-card" style={{ border: `1px dashed ${theme.palette.secondary.main}` }}>
+            <div
+              className="wcu-card"
+              style={{ border: `1px dashed ${theme.palette.secondary.main}` }}
+            >
               <img src={premium} alt="premiun badge" />
               <Typography
                 variant="body1"
-                sx={{   
-                  fontWeight: 600,
-                  mt: 2
-                }}
-              >
-                FAST & FREE DELIVERY
-              </Typography>
-              <Typography variant="subtitle2" sx={{ mt: 0.5, color: "#999999" }}>
-                Enjoy quick delivery at no extra cost—because we know your time
-                matters.
-              </Typography>
-            </div>
-            <div className="wcu-card" style={{ border: `1px dashed ${theme.palette.secondary.main}` }}>
-              <img src={crown} alt="premiun badge" />
-              {/* <WorkspacePremiumRoundedIcon sx={{ width: "70px", height: "70px", color: theme.palette.text.secondary }} /> */}
-              <Typography
-                variant="body1"
-                sx={{   
+                sx={{
                   fontWeight: 600,
                   mt: 2,
                 }}
               >
-                FAST & FREE DELIVERY
+                Premiun Products
               </Typography>
-              <Typography variant="subtitle2" sx={{ mt: 0.5 }}>
-                Enjoy quick delivery at no extra cost—because we know your time
-                matters.
+              <Typography
+                variant="subtitle2"
+                sx={{ mt: 0.5, color: "#999999" }}
+              >
+                All rentals are well-maintained, thoroughly cleaned, and
+                quality-checked for a seamless experience.
               </Typography>
             </div>
-            <div className="wcu-card" style={{ border: `1px dashed ${theme.palette.secondary.main}` }}>
-              <img src={premium} alt="premiun badge" />
+            <div
+              className="wcu-card"
+              style={{ border: `1px dashed ${theme.palette.secondary.main}` }}
+            >
+              <img src={truck} alt="premiun badge" />
+              {/* <WorkspacePremiumRoundedIcon sx={{ width: "70px", height: "70px", color: theme.palette.text.secondary }} /> */}
               <Typography
                 variant="body1"
-                sx={{   
+                sx={{
                   fontWeight: 600,
-                  mt: 2
+                  mt: 2,
                 }}
               >
-                FAST & FREE DELIVERY
+                Fast & Reliable Delivery
               </Typography>
-              <Typography variant="subtitle2" sx={{ mt: 0.5, color: "#999999" }}>
-                Enjoy quick delivery at no extra cost—because we know your time
-                matters.
+              <Typography variant="subtitle2" sx={{ mt: 0.5 }}>
+                We ensure quick and hassle-free delivery so you can start using
+                your rental items without delay.
+              </Typography>
+            </div>
+            <div
+              className="wcu-card"
+              style={{ border: `1px dashed ${theme.palette.secondary.main}` }}
+            >
+              <img src={availability} alt="premiun badge" />
+              <Typography
+                variant="body1"
+                sx={{
+                  fontWeight: 600,
+                  mt: 2,
+                }}
+              >
+                Cancel Anytime
+              </Typography>
+              <Typography
+                variant="subtitle2"
+                sx={{ mt: 0.5, color: "#999999" }}
+              >
+                Plans change? No worries! We offer a flexible cancellation
+                policy—cancel anytime without hidden fees or stress. Your
+                convenience is our priority.
               </Typography>
             </div>
           </div>

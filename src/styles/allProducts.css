@@ -8,3 +8,23 @@
     justify-content: space-between;
     align-items: center;
 }
+
+.filters-container {
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.products-container {
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.filters-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.filters-container {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}

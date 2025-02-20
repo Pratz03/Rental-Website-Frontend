@@ -99,7 +99,7 @@ export default function SignIn(props: Props) {
     const password = (document.getElementById("password") as HTMLInputElement)
       .value;
 
-    console.log("Tenant ID:", tenantId); // Debugging tenantId
+    console.log("Tenant ID:", tenantId);
 
     try {
       const userData = await login(username, password, tenantId as string);
@@ -111,8 +111,7 @@ export default function SignIn(props: Props) {
         navigate(`/${tenantId}/home`);
       }
     } catch (error) {
-      console.error("Login failed:", error);
-      alert("Invalid credentials");
+      console.error("Login failed. Invalid credentials.", error);
     }
   };
 

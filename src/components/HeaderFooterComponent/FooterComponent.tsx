@@ -7,21 +7,20 @@ function FooterComponent() {
   return (
     <div
       className="footer-main-container"
-      style={{ backgroundColor: theme.palette.primary.main }}
+      style={{ backgroundColor: "rgb(247, 247, 247)" }}
     >
-      <Typography variant="body1" sx={{ color: theme.palette.text.secondary }}>
+      <Typography variant="body1">
         © 2025 Rental. All rights reserved.
       </Typography>
       <div className="inner-container">
         <Typography
           variant="body1"
-          sx={{ color: theme.palette.text.secondary, mr: 1 }}
+          sx={{ mr: 1 }}
         >
           rental@gmail.com
         </Typography>
         <Typography
           variant="body1"
-          sx={{ color: theme.palette.text.secondary }}
         >
           443-343-33
         </Typography>

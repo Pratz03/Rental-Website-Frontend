@@ -43,6 +43,27 @@ const prodcutAPI = {
       throw error;
     }
   },
+  getLimitedData: async (limit: number, offset?: number) => {
+    try {
+      const response = await axiosInstance.get("/products", {
+        params: {
+          limit,
+          offset,
+        },
+      });
+      return response.data.products;
+    } catch (error) {
+      throw error;
+    }
+  },
+  getFilters: async () => {
+    try {
+      const response = await axiosInstance.get("/products/filters");
+      return response.data.filters;
+    } catch (error) {
+      throw error;
+    }
+  },
 };
 
 export default prodcutAPI;

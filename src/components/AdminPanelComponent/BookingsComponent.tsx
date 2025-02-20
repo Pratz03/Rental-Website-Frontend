@@ -12,7 +12,11 @@ import {
 } from "@mui/material";
 import bookingsAPI from "../../api/bookingsAPI";
 
-function BookingsComponent() {
+interface Props {
+  rowsTable?: number;
+}
+
+function BookingsComponent(props: Props) {
   const [bookings, setBookings] = useState<any[]>([]);
   const [columns, setColumns] = useState<string[]>([]);
 
@@ -39,25 +43,26 @@ function BookingsComponent() {
       sx={{
         display: "flex",
         flexDirection: "column",
-        height: "85vh",
+        height: props.rowsTable ? "60vh" : "85vh",
         borderRadius: 2,
         p: 2,
       }}
     >
-      <Typography
-        variant="h6"
-        sx={{
-          background: "#ffffff",
-          padding: "20px 0",
-          borderBottom: "1px solid #ddd",
-          position: "sticky",
-          top: 0,
-          zIndex: 10,
-        }}
-      >
-        Bookings
-      </Typography>
-
+      {!props.rowsTable && (
+        <Typography
+          variant="h6"
+          sx={{
+            background: "#ffffff",
+            padding: "20px 0",
+            borderBottom: "1px solid #ddd",
+            position: "sticky",
+            top: 0,
+            zIndex: 10,
+          }}
+        >
+          Bookings
+        </Typography>
+      )}
       <TableContainer
         component={Paper}
         sx={{
@@ -86,15 +91,18 @@ function BookingsComponent() {
           </TableHead>
           <TableBody>
             {bookings.length > 0 ? (
-              bookings.map((booking, index) => (
-                <TableRow key={index}>
-                  {columns.map((key) => (
-                    <TableCell key={`${index}-${key}`}>
-                      {booking[key] || "N/A"}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              ))
+              bookings
+                .slice(-Math.abs(props.rowsTable || 5))
+                .reverse()
+                .map((booking, index) => (
+                  <TableRow key={index}>
+                    {columns.map((key) => (
+                      <TableCell key={`${index}-${key}`}>
+                        {booking[key] || "N/A"}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                ))
             ) : (
               <TableRow>
                 <TableCell colSpan={columns.length} align="center">
