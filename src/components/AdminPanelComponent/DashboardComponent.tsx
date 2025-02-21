@@ -27,13 +27,13 @@ function DashboardComponent() {
           spacing={{ xs: 2, md: 3 }}
           columns={{ xs: 4, sm: 12, md: 12 }}
         >
-          <Grid item xs={4} sm={4} md={4} key={""}>
+          <Grid item xs={4} sm={6} md={4} key={""}>
             <AnalyticsBoxComponent />
           </Grid>
-          <Grid item xs={4} sm={4} md={4} key={""}>
+          <Grid item xs={4} sm={6} md={4} key={""}>
             <AnalyticsBoxComponent />
           </Grid>
-          <Grid item xs={4} sm={4} md={4} key={""}>
+          <Grid item xs={4} sm={6} md={4} key={""}>
             <AnalyticsBoxComponent />
           </Grid>
         </Grid>

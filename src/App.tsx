@@ -9,6 +9,7 @@ import MenuBarComponent from "./components/HeaderFooterComponent/MenuBarComponen
 import HomePageComonent from "./components/HomePageComponent/HomePageComonent";
 import ProductCardComponent from "./common-components/ProductCardComponent";
 import AllProductsComponent from "./components/ProductsComponent/AllProductsComponent";
+import UserProfileComponent from "./components/UserProfileComponent/UserProfileComponent";
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
         <Route path="/:tenantId/admin" element={<AdminPanelComponent />} />
         <Route path="/:tenantId/header" element={<HomePageComonent />} />
         <Route path="/:tenantId/products" element={<AllProductsComponent />} />
+        <Route path="/:tenantId/profile" element={<UserProfileComponent />} />
       </Routes>
     </div>
   );
