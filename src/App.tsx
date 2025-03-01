@@ -10,20 +10,24 @@ import HomePageComonent from "./components/HomePageComponent/HomePageComonent";
 import ProductCardComponent from "./common-components/ProductCardComponent";
 import AllProductsComponent from "./components/ProductsComponent/AllProductsComponent";
 import UserProfileComponent from "./components/UserProfileComponent/UserProfileComponent";
+import SingleProductComponet from "./components/ProductsComponent/SingleProductComponet";
+import { useTenantId } from "../src/hooks/tenantHook";
 
 function App() {
-
-  const CLIENT_ID = "9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d";
-  const CLIENT_URL = `/${CLIENT_ID}`
+  // const tenantId = useTenantId();
 
   return (
     <div className="App" style={{ display: "block" }}>
       <Routes>
         <Route path={"/:tenantId"} element={<SignUpLogInComponent />} />
-        <Route path="/:tenantId/home" element={<Home />} />
+        <Route path="/:tenantId/sample" element={<Home />} />
         <Route path="/:tenantId/admin" element={<AdminPanelComponent />} />
-        <Route path="/:tenantId/header" element={<HomePageComonent />} />
+        <Route path="/:tenantId/home" element={<HomePageComonent />} />
         <Route path="/:tenantId/products" element={<AllProductsComponent />} />
+        <Route
+          path="/:tenantId/products/:id"
+          element={<SingleProductComponet />}
+        />
         <Route path="/:tenantId/profile" element={<UserProfileComponent />} />
       </Routes>
     </div>

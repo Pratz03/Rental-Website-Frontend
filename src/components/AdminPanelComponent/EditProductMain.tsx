@@ -31,7 +31,6 @@ function EditProductMain() {
     console.log(id)
     try {
       const response = prodcutAPI.deleteProductData(id);
-      console.log("::", response);
       handleUpdate(true);
     } catch (error) {
       
@@ -41,7 +40,7 @@ function EditProductMain() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await prodcutAPI.getProductData();
+        const response = await prodcutAPI.getLimitedData(50, 0);
         setProductData(response);
         if (response.length > 0) setColumns(Object.keys(response[0]));
       } catch (error) {

@@ -25,13 +25,11 @@ function AddProduct() {
   const [isDataSubmitted, setIsDataSubmitted] = useState(false);
 
   const handleClick = async (e: any, key: string) => {
-    console.log("Submitting Product Data:", productData);
     if (key === "reset") {
       setIsDataSubmitted(!isDataSubmitted);
     } else {
       try {
         const response = await prodcutAPI.AddProduct(productData);
-        console.log("Response: ", response);
         setIsDataSubmitted(!isDataSubmitted);
       } catch (error) {
         console.error("Error updating product fields:", error);

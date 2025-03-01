@@ -48,8 +48,6 @@ function Home() {
         },
       })
       .then((res) => {
-        console.log(">>>>>", res.data);
-        
         setCompanyInfo(res.data);
         setProductFields(_.get(res.data, "result[0].product_fields"));
       })

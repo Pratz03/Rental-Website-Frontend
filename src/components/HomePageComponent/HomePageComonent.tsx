@@ -30,7 +30,6 @@ function HomePageComonent() {
     const fetchData = async () => {
       try {
         const response = await prodcutAPI.getLimitedData(4, 0);
-        console.log(":::::::", response);
         setProducts(response);
       } catch (error) {
         throw error;

@@ -33,7 +33,6 @@ function CreateProductForm() {
     [key: string]: { key?: string; dataType?: string; options?: string };
   }>({});
 
-
   const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body1,
     padding: theme.spacing(2.5),
@@ -70,8 +69,6 @@ function CreateProductForm() {
       ...prevErrors,
       [id]: { ...prevErrors[id], [key]: "" },
     })); // Clear specific field errors on change
-
-    console.log("??????", errors);
   };
 
   const addFields = (type: InputType) => {
@@ -141,17 +138,15 @@ function CreateProductForm() {
   };
 
   const handleSubmit = () => {
-    console.log("Submitting Fields:", productFields); // Debugging step
     if (validateFields()) {
       setProductFields((prevFields) =>
         prevFields.map((field) => ({ ...field, disabled: true }))
       );
-      console.log("Form Submitted", productFields);
+
       const data = {
         product_fields: productFields,
       };
       const updateFields = settingsAPI.updateSettings(data);
-      console.log("Form Submitted", updateFields);
     }
   };
 
@@ -251,7 +246,8 @@ function CreateProductForm() {
                               disabled={
                                 !(
                                   field.key === "product_type" ||
-                                  field.key === "brand"
+                                  field.key === "brand" ||
+                                  field.key === "location"
                                 )
                                   ? field.disabled
                                   : true
@@ -273,7 +269,8 @@ function CreateProductForm() {
                               disabled={
                                 !(
                                   field.key === "product_type" ||
-                                  field.key === "brand"
+                                  field.key === "brand" ||
+                                  field.key === "location"
                                 )
                                   ? field.disabled
                                   : true
@@ -343,7 +340,8 @@ function CreateProductForm() {
                           {!field.disabled &&
                             !(
                               field.key === "product_type" ||
-                              field.key === "brand"
+                              field.key === "brand" ||
+                              field.key === "location"
                             ) && (
                               <IconButton
                                 onClick={() => deleteField(field.id as string)}
@@ -356,7 +354,13 @@ function CreateProductForm() {
                       </Grid>
                     ))}
                   </div>
-                  <div style={{ display: "flex", justifyContent: "flex-end", padding: "20px 0 0" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "flex-end",
+                      padding: "20px 0 0",
+                    }}
+                  >
                     <Button
                       variant="contained"
                       component="label"

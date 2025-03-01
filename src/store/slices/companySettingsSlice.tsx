@@ -39,8 +39,6 @@ export const fetchSettings = createAsyncThunk(
   async () => {
     const response = await settingsAPI.getSetting();
 
-    console.log(">>>>>",response.data.result[0]);
-
     return response.data.result?.length ? response.data.result[0] : initialState;
   }
 );
@@ -49,8 +47,6 @@ export const saveSettings = createAsyncThunk(
   "settings/saveSettings",
   async (settings: SettingsState, { dispatch }) => {
     const sanitizedSettings = omit(settings, ["id", "_persist"]);
-
-    console.log("Sending settings:", sanitizedSettings);
 
     const response = await settingsAPI.updateSettings(sanitizedSettings);
 

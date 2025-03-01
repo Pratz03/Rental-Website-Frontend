@@ -1,11 +1,49 @@
 import { Button, Grid, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AnalyticsBoxComponent from "../../common-components/AnalyticsBoxComponent";
 import "../../styles/dashboard.css";
 import BookingsComponent from "./BookingsComponent";
 import EastRoundedIcon from "@mui/icons-material/EastRounded";
+import bookingsAPI from "../../api/bookingsAPI";
+import prodcutAPI from "../../api/productAPI";
+import userAPI from "../../api/userApi";
+import GroupRoundedIcon from '@mui/icons-material/GroupRounded';
+import LocalFireDepartmentRoundedIcon from "@mui/icons-material/LocalFireDepartmentRounded";
+import StarRoundedIcon from '@mui/icons-material/StarRounded';
 
-function DashboardComponent() {
+interface Props {
+  handleViewAll: (key: string) => void;
+}
+
+function DashboardComponent(props: Props) {
+  const [bookings, setBookings] = useState<Record<string, any>>({});
+  const [mostBooked, setMostBooked] = useState<Record<string, any>>({});
+  const [totalUsers, setTotalUsers] = useState<Record<string, any>>({});
+
+  const handleViewAll = () => {
+    props.handleViewAll("bookings");
+  };
+
+  useEffect(() => {
+    const fetchAnalytics = async () => {
+      try {
+        const bookings = await bookingsAPI.totalBookings();
+        const mostBookedProduct = await prodcutAPI.mostBookedProduct();
+        const totalUsers = await userAPI.totalUsers();
+        console.log("::::::", bookings, mostBookedProduct, totalUsers);
+        setBookings(bookings);
+        setMostBooked(mostBookedProduct);
+        setTotalUsers(totalUsers);
+      } catch (err) {
+        throw err;
+      }
+    };
+    fetchAnalytics();
+  }, []);
+
+  console.log("???????", bookings);
+  
+
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       <Typography
@@ -28,13 +66,35 @@ function DashboardComponent() {
           columns={{ xs: 4, sm: 12, md: 12 }}
         >
           <Grid item xs={4} sm={6} md={4} key={""}>
-            <AnalyticsBoxComponent />
+            <AnalyticsBoxComponent
+              mainHeadingValue={bookings["total_bookings"]}
+              subheading1Value={bookings["bookings_today"]}
+              subheading2Value={bookings["bookings_month"]}
+              heading={"Total Bookings"}
+              subheading1={"Today's"}
+              subheading2={"This month's"}
+              icon={<LocalFireDepartmentRoundedIcon />}
+            />
           </Grid>
           <Grid item xs={4} sm={6} md={4} key={""}>
-            <AnalyticsBoxComponent />
+            <AnalyticsBoxComponent
+              mainHeadingValue={mostBooked["product_name"]}
+              subheading1Value={mostBooked["booking_count"]}
+              heading={"Most Booked Car"}
+              subheading1={"Total bookings"}
+              icon={<StarRoundedIcon />}
+            />
           </Grid>
           <Grid item xs={4} sm={6} md={4} key={""}>
-            <AnalyticsBoxComponent />
+            <AnalyticsBoxComponent
+              mainHeadingValue={totalUsers["total_user"]}
+              subheading1Value={totalUsers["total_user_today"]}
+              subheading2Value={totalUsers["total_user_month"]}
+              heading={"Total users"}
+              subheading1={"Today's"}
+              subheading2={"This month's"}
+              icon={<GroupRoundedIcon />}
+            />
           </Grid>
         </Grid>
       </div>
@@ -59,13 +119,14 @@ function DashboardComponent() {
               display: "flex",
               flexDirection: "column",
               alignItems: "flex-end",
-              padding: "0px 10px"
+              padding: "0px 10px",
             }}
           >
             <Button
               variant="text"
               color="secondary"
               endIcon={<EastRoundedIcon />}
+              onClick={handleViewAll}
               sx={{ textTransform: "none", fontWeight: 600 }}
             >
               View All

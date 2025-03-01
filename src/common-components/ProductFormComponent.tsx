@@ -124,7 +124,6 @@ function ProductFormComponent(props: Props) {
   }, [props.isDataSubmitted]);
 
   useEffect(() => {
-    console.log("...", props.initialData);
     try {
       prodcutAPI.getProductFields().then((data) => {
         setProductFields(_.get(data, "result[0].product_fields"));

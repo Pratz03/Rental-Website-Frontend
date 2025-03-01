@@ -29,7 +29,6 @@ function BookingsComponent(props: Props) {
         });
         setColumns(columns);
         setBookings(response);
-        console.log("++++", response, columns);
       } catch (error) {
         throw error;
       }

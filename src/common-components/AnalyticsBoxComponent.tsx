@@ -1,20 +1,32 @@
 import { Divider, Grid, IconButton, Typography } from "@mui/material";
-import LocalFireDepartmentRoundedIcon from "@mui/icons-material/LocalFireDepartmentRounded";
 import StarRoundedIcon from "@mui/icons-material/StarRounded";
 import PeopleRoundedIcon from "@mui/icons-material/PeopleRounded";
-import React from "react";
+import React, { useEffect } from "react";
 
-function AnalyticsBoxComponent() {
+interface Props {
+  mainHeadingValue?: any;
+  subheading1Value?: any;
+  subheading2Value?: any;
+  heading?: any;
+  subheading1?: any;
+  subheading2?: any;
+  icon: any;
+}
+
+function AnalyticsBoxComponent(props: Props) {  
+  useEffect(()=> {
+    console.log("----------------------------------", props.mainHeadingValue)
+  }, [])
   return (
     <div className="anlytics-box-container">
       <div className="analytics-main-heading">
         <IconButton aria-label="icon" size="large">
-          <LocalFireDepartmentRoundedIcon />
+          {props.icon}
         </IconButton>
         <div style={{ textAlign: "center" }}>
-          <Typography className="heading">Total Bookings</Typography>
+          <Typography className="heading">{props.heading}</Typography>
           <Typography variant="h3" color="secondary">
-            34
+            {props.mainHeadingValue}
           </Typography>
         </div>
       </div>
@@ -27,9 +39,9 @@ function AnalyticsBoxComponent() {
       >
         <Grid item xs={2} sm={12} md={6} key={""}>
           <div style={{ width: "fit-content", textAlign: "center" }}>
-            <Typography className="inner-heading">Today's</Typography>
+            <Typography className="inner-heading">{props.subheading1 ? props.subheading1 : ""}</Typography>
             <Typography variant="h4" color="secondary">
-              4
+              {props.subheading1Value}
             </Typography>
           </div>
         </Grid>
@@ -42,9 +54,9 @@ function AnalyticsBoxComponent() {
           sx={{ display: "flex", justifyContent: "flex-end" }}
         >
           <div style={{ width: "fit-content", textAlign: "center" }}>
-            <Typography className="inner-heading">This month's</Typography>
+            <Typography className="inner-heading">{props.subheading2 ? props.subheading2 : ""}</Typography>
             <Typography variant="h4" color="secondary">
-              12
+              {props.subheading2Value}
             </Typography>
           </div>
         </Grid>

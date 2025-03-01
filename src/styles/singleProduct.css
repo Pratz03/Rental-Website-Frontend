@@ -1,0 +1,74 @@
+.swiper-slide img.product-image {
+    width: 100%;
+}
+
+.inner-product-container {
+    margin-top: 92px !important;
+    padding: 20px 40px 40px;
+}
+
+.sp-des {
+    font-size: 0.9rem !important;
+}
+
+.sp-more-des {
+    font-size: 0.8rem !important;
+}
+
+.rent-box {
+    padding: 20px 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px #d2d2d2;
+}
+
+.sp-small-heading {
+    font-weight: 600 !important;
+    margin-bottom: 5px !important;
+    text-align: left;
+}
+
+.react-datepicker-wrapper {
+    width: 100%;
+}
+
+.date-selector input {
+    width: 100% !important;
+    height: 5ch;
+    border: 1px solid #9d9d9d;
+    border-radius: 5px;
+    padding: 0 10px;
+}
+
+.info-product-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.info-product-container {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.info-product-container {
+    /* height: 100vh; */
+    overflow-y: auto;
+}
+
+.related-products-container {
+    padding: 40px;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: white; /* Change arrow color */
+  padding: 10px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 20px; /* Change arrow size */
+  font-weight: bold;
+}

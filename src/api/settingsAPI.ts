@@ -8,7 +8,6 @@ const settingsAPI = {
     updateSettings: async (settingsData: any) => {
         try {
             const response = await axiosInstance.put("/settings/update-settings", settingsData);
-            console.log("Update successful:", response.data);
             return response;
         } catch (error: any) {
             console.error("Error updating settings:", error.response?.data || error.message);

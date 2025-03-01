@@ -10,6 +10,10 @@ import {
   Drawer,
   List,
   ListItemText,
+  FormControl,
+  InputLabel,
+  OutlinedInput,
+  InputAdornment,
 } from "@mui/material";
 import ListItem from "@mui/material/ListItem";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -18,6 +22,7 @@ import { iconMap } from "../../helpers/iconMap";
 import theme from "../../theme";
 import "../../styles/header.css";
 import { useMediaQuery } from "@mui/material";
+import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 
 function MenuBarComponent() {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -82,6 +87,26 @@ function MenuBarComponent() {
             </>
           )}
         </div>
+
+        {!isMobile && (
+          <FormControl sx={{ m: 1, width: "65ch" }} variant="outlined">
+            <InputLabel htmlFor="outlined-adornment-password">
+              Search
+            </InputLabel>
+            <OutlinedInput
+              id="outlined-adornment-password"
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton edge="end">
+                    <SearchRoundedIcon color="secondary"/>
+                  </IconButton>
+                </InputAdornment>
+              }
+              label="Search"
+              fullWidth
+            />
+          </FormControl>
+        )}
 
         {isMobile ? (
           <IconButton edge="end" onClick={() => setDrawerOpen(true)}>

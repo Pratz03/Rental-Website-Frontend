@@ -98,9 +98,7 @@ export default function SignIn(props: Props) {
       .value;
     const password = (document.getElementById("password") as HTMLInputElement)
       .value;
-
-    console.log("Tenant ID:", tenantId);
-
+      
     try {
       const userData = await login(username, password, tenantId as string);
       alert("Login Successful");

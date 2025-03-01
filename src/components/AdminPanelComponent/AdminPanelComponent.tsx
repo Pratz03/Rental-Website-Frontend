@@ -22,6 +22,7 @@ import { dashboardData } from "../../helpers/metaData";
 import logo from "../../assets/logo.png";
 import avtar from "../../assets/avtar.png";
 import "../../styles/adminPanel.css";
+import DashboardComponent from "./DashboardComponent";
 
 const drawerWidth = 300;
 
@@ -128,6 +129,10 @@ function AdminPanelComponent() {
     </Box>
   );
 
+  const handleViewAll = (key: string) => {
+    setActiveComponent(key);
+  };
+
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -182,7 +187,6 @@ function AdminPanelComponent() {
         sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
         aria-label="mailbox folders"
       >
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Drawer
           // container={container}
           variant="temporary"
@@ -190,7 +194,7 @@ function AdminPanelComponent() {
           onTransitionEnd={handleDrawerTransitionEnd}
           onClose={handleDrawerClose}
           ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
+            keepMounted: true,
           }}
           sx={{
             display: { xs: "block", sm: "none" },
@@ -228,7 +232,11 @@ function AdminPanelComponent() {
       >
         <Toolbar />
         <div>
-          {dashboardData[activeComponent].component}
+          {activeComponent === "dashboard" ? (
+            <DashboardComponent handleViewAll={handleViewAll} />
+          ) : (
+            dashboardData[activeComponent].component
+          )}
         </div>
       </Box>
     </Box>

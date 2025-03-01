@@ -25,7 +25,6 @@ function UsersComponet() {
         });
         setColumns(columns);
         setUsers(response);
-        console.log("++++", response, columns);
       } catch (error) {
         throw error;
       }

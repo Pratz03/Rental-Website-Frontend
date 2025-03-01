@@ -36,7 +36,8 @@ export const productMetadata: ProductMeta[] = [
     metric: "",
     inputType: InputType.INPUT,
     dataType: DataType.STRING,
-    disabled: true
+    disabled: true,
+    options: '[]'
   },
   {
     id: uuid(),
@@ -77,12 +78,22 @@ export const productMetadata: ProductMeta[] = [
     options: "",
     disabled: false
   },
+  {
+    id: uuid(),
+    key: "location",
+    label: "Location",
+    metric: "",
+    inputType: InputType.SELECT, // Dropdown for product types
+    dataType: DataType.STRING,
+    options: "",
+    disabled: false
+  },
 ];
 
 export const dashboardData: DashboardData = {
   dashboard: {
     text: "Dashboard",
-    component: <DashboardComponent />,
+    component: <DashboardComponent handleViewAll={()=> {return}} />,
     icon: iconMap["dashboard"],
   },
   add_product: {

@@ -4,8 +4,6 @@ const prodcutAPI = {
   getProductFields: async () => {
     try {
       const response = await axiosInstance.get("/settings");
-      console.log("--------", response);
-
       return response.data;
     } catch (error) {
       throw error;
@@ -60,6 +58,39 @@ const prodcutAPI = {
     try {
       const response = await axiosInstance.get("/products/filters");
       return response.data.filters;
+    } catch (error) {
+      throw error;
+    }
+  },
+  getFilteredProducts: async (
+    search: string,
+    filters: any,
+    limit: number,
+    offset?: number
+  ) => {
+    try {
+      const response = await axiosInstance.post(
+        "/products/f&s-products",
+        { filters },
+        { params: { search, limit, offset } }
+      );
+      return response.data.products;
+    } catch (error) {
+      throw error;
+    }
+  },
+  mostBookedProduct: async () => {
+    try {
+      const response = await axiosInstance.get("/bookings/most-booked-product");
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  },
+  getProductById: async (id: string) => {
+    try {
+      const response = await axiosInstance.get(`/products/${id}`);
+      return response.data.user;
     } catch (error) {
       throw error;
     }

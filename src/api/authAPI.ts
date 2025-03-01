@@ -5,8 +5,6 @@ export const login = async (
   password: string,
   tenantId: string
 ) => {
-  console.log(">>", username, password);
-
   const response = await axios
     .post(
       "http://localhost:5000/auth/login",

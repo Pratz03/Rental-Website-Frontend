@@ -160,8 +160,6 @@ export default function SignUpComponent(props: Props) {
   
       setErrors(newErrors); // Update the errors state
     }
-  
-    console.log("Form Data:", formData);
   };  
 
   return (

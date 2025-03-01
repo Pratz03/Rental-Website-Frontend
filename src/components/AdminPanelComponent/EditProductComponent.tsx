@@ -28,7 +28,6 @@ function EditProductComponent(props: Props) {
   const [productData, setProductData] = useState<any>({});
 
   const handleClickOpen = () => {
-    console.log("++++++++", props.columns, props.productData);
     setOpen(true);
   };
 
@@ -37,8 +36,6 @@ function EditProductComponent(props: Props) {
   };
 
   const handleSubmit = () => {
-    console.log("from child = ", productData);
-    
     try {
         prodcutAPI.editProductData(props.productData.product_id, productData)
         props.isDataUpdated(true);

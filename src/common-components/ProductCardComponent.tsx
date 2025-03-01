@@ -7,6 +7,8 @@ import car3 from "../assets/car3.jpeg";
 import { Divider, Grid, Typography } from "@mui/material";
 import theme from "../theme";
 import _ from "lodash";
+import { useNavigate } from "react-router";
+import { useTenantId } from "../hooks/tenantHook";
 
 interface Props {
   productData: Record<string, string>;
@@ -16,12 +18,10 @@ function ProductCardComponent(props: Props) {
   const [product, setProduct] = useState<Record<string, string>>({});
   const [cardData, setCardData] = useState<Record<string, string>>({});
 
+  const tenantId = useTenantId();
+  const navigate = useNavigate();
+
   useEffect(() => {
-    console.log(
-      "???????",
-      props.productData,
-      !(Object.keys(props.productData).length === 0)
-    );
     setProduct(props.productData);
     setCardData({
       Brand: props.productData["brand"],
@@ -30,10 +30,14 @@ function ProductCardComponent(props: Props) {
     });
   }, []);
 
+  const hanndleClick = () => {
+    navigate(`/${tenantId}/products/${props.productData["product_id"]}`);
+  }
+
   return (
     <div>
       {!(Object.keys(props.productData).length === 0) && (
-        <div className="card-container">
+        <div className="card-container" onClick={hanndleClick} style={{ cursor: "pointer" }}>
           <div className="image-container">
             <img src={car2} />
           </div>
